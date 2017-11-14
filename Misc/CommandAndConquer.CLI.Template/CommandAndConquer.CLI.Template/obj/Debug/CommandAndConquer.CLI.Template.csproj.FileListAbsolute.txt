@@ -1,0 +1,10 @@
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\bin\Debug\ProjectTemplates\CommandAndConquer.CLI.zip
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\bin\Debug\icon.png
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.zip
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.Template.vsix
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\bin\Debug\extension.vsixmanifest
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.csprojResolveAssemblyReference.cache
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.csproj.CoreCompileInputs.cache
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.dll
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.pdb
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer.CLI.Template\CommandAndConquer.CLI.Template\obj\Debug\extension.vsixmanifest
