@@ -13,3 +13,5 @@ After doing that you can add public static methods to this class giving them the
 Once you have setup all of this you will then be able to access your code through the command line.  the format to do so is  
 "<program.exe <controller> <command> -<parameter> <parameter_value>"  
 To access the build in help function use '?' for either <controller> or <command>.
+
+To download a template to make getting started easier please go [here](https://marketplace.visualstudio.com/items?itemName=wmaxzimmerman.CommandAndConquerCLI01)  
