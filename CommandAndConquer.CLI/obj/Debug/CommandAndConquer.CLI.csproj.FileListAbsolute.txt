@@ -1,0 +1,9 @@
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.dll
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.pdb
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.csprojResolveAssemblyReference.cache
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.dll
+c:\users\max\documents\visual studio 2017\Projects\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.pdb
+C:\git\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.dll
+C:\git\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.pdb
+C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.dll
+C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.pdb
