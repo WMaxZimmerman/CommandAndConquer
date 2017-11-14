@@ -7,11 +7,11 @@
     <authors>WMaxZimmerman</authors>
     <owners>WMaxZimmerman</owners>
     <projectUrl>https://github.com/WMaxZimmerman/CommandAndConquer</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/WMaxZimmerman/CommandAndConquer/master/Misc/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>A library to make the creation of .Net Command Line Application as simple as possible. Let this library take care of the wiring so you can focus on building your application.</description>
+    <releaseNotes>An initial release.  More enhancements will be following soon.  </releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>CommandLine Command CLI CLA Application Terminal Console MVCLI</tags>
   </metadata>
 </package>
