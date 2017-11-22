@@ -19,44 +19,78 @@ namespace CommandAndConquer.CLI.Core
                 return;
             }
 
-            var callingAssembly = Assembly.GetCallingAssembly();
+            var controllers = GetControllers(Assembly.GetCallingAssembly());
+            var arguments = ProcessArgs(args);
 
-            var controller = GetController(callingAssembly, args[0]);
-            if (controller == null)
+            if (arguments.IsHelpCall)
             {
-                if (args[0] == "?") return;
-                Console.WriteLine($"'{args[0]}' is not a valid controller.  Use '{helpString}' to see available controllers.");
+                var controller = controllers.FirstOrDefault(c => c.Name == arguments.Controller);
+                if (controller == null)
+                {
+                    foreach (var c in controllers)
+                    {
+                        c.OutputDocumentation();
+                    }
+                    return;
+                }
+
+                controller.ExecuteCommand(arguments.Command, arguments.Arguments);
             }
-
-            if (args.Length == 1)
+            else
             {
-                Console.WriteLine($"Please enter a command.  Use '{helpString}' to see available commands.");
-                return;
-            }
+                var controller = controllers.FirstOrDefault(c => c.Name == arguments.Controller);
+                if (controller == null)
+                {
+                    Console.WriteLine($"'{args[0]}' is not a valid controller.  Use '{helpString}' to see available controllers.");
+                    return;
+                }
 
-            var command = GetCommand(controller, args[1]);
-            if (command == null)
-            {
-                if (args[1] == "?") return;
-                Console.WriteLine($"'{args[1]}' is not a valid command.  Use '{helpString}' to see available commands.");
-            }
-
-            var argsList = args.ToList();
-            argsList.RemoveRange(0, 2);
-
-            var commandArguments = SetArguments(argsList);
-            var paramList = GetParams(command, commandArguments);
-
-            try
-            {
-                command.Invoke(null, BindingFlags.Static, null, paramList.ToArray(), null);
-            }
-            catch (TargetInvocationException e)
-            {
-                throw e.InnerException;
+                controller.ExecuteCommand(arguments.Command, arguments.Arguments);
             }
         }
 
+        private static List<Controller> GetControllers(Assembly callingAssembly)
+        {
+            var controllerList = callingAssembly.GetTypes()
+                .Where(t => t.IsClass && t.Namespace.EndsWith(".Controllers") && Attribute.GetCustomAttributes(t).Any(a => a is CliController))
+                .Select(t => new Controller(t));
+            
+            return controllerList.ToList();
+        }
+
+        private static ProcessedArguments ProcessArgs(string[] args)
+        {
+            var processedArguments = new ProcessedArguments();
+
+            if (args.Length == 0) return processedArguments;
+
+            processedArguments.IsHelpCall = args[args.Length - 1] == helpString;
+            processedArguments.Controller = TryGetArg(args, 0);
+            processedArguments.Command = TryGetArg(args, 1);
+
+            if (args.Length > 2)
+            {
+                var argsList = args.ToList();
+                argsList.RemoveRange(0, 2);
+                processedArguments.Arguments = SetArguments(argsList);
+            }
+
+            return processedArguments;
+        }
+
+        private static string TryGetArg(string[] args, int index)
+        {
+            try
+            {
+                var arg = args[index];
+                return arg == helpString ? null : arg;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        
         private static List<CommandLineArgument> SetArguments(IEnumerable<string> args)
         {
             var arguments = new List<CommandLineArgument>();
@@ -81,115 +115,6 @@ namespace CommandAndConquer.CLI.Core
             arguments.Add(tempArg);
 
             return arguments;
-        }
-
-        private static Type GetController(Assembly callingAssembly, string name)
-        {
-            var classList = callingAssembly.GetTypes()
-                .Where(t => t.IsClass && t.Namespace.EndsWith(".Controllers") && Attribute.GetCustomAttributes(t).Any(a => a is CliController));
-
-            if (name == helpString) Console.WriteLine("The possible controllers to use are:");
-
-            foreach (var t in classList)
-            {
-                var attrs = Attribute.GetCustomAttributes(t);
-
-                foreach (var attr in attrs)
-                {
-                    if (!(attr is CliController)) continue;
-                    var a = (CliController)attr;
-
-                    if (name == helpString)
-                    {
-                        Console.WriteLine($"{a.Name} - {a.Description}");
-                    }
-                    else
-                    {
-                        if (a.Name == name) return t;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private static MethodInfo GetCommand(Type controller, string commandName)
-        {
-            var commands = controller.GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliCommand));
-
-            if (commandName == helpString)
-            {
-                Console.WriteLine("The possible commands to use are:");
-            }
-
-            foreach (var command in commands)
-            {
-                var attrs = Attribute.GetCustomAttributes(command);
-
-                foreach (var attr in attrs)
-                {
-                    if (!(attr is CliCommand)) continue;
-                    var a = (CliCommand)attr;
-
-                    if (commandName == helpString)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine($"{a.Name}");
-                        Console.WriteLine($"Description: {a.Description}");
-                        var commandParams = command.GetParameters();
-                        if (commandParams.Length > 0)
-                        {
-                            Console.WriteLine($"Parameters:");
-                            foreach (var cp in commandParams)
-                            {
-                                var priorityString = cp.HasDefaultValue ? "Optional" : "Required";
-                                var temp = Nullable.GetUnderlyingType(cp.ParameterType);
-                                var typeName = temp == null ? cp.ParameterType.Name : temp.Name;
-                                Console.WriteLine($"-{cp.Name} ({typeName}): This parameter is {priorityString}.");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (a.Name == commandName) return command;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private static object[] GetParams(MethodInfo command, List<CommandLineArgument> args)
-        {
-            var paramList = new List<object>();
-
-            foreach (var parameter in command.GetParameters())
-            {
-                var wasFound = false;
-                foreach (var argument in args)
-                {
-                    if (argument.Command.ToLower() != parameter.Name.ToLower()) continue;
-                    object paramValue;
-
-                    if (Nullable.GetUnderlyingType(parameter.ParameterType) != null)
-                    {
-                        var underType = Nullable.GetUnderlyingType(parameter.ParameterType);
-                        paramValue = Convert.ChangeType(argument.Value, underType);
-                    }
-                    else
-                    {
-                        paramValue = Convert.ChangeType(argument.Value, parameter.ParameterType);
-                    }
-
-                    paramList.Add(paramValue);
-                    wasFound = true;
-                }
-
-                if (!wasFound) paramList.Add(null);
-            }
-
-            return paramList.ToArray();
         }
     }
 }

@@ -7,4 +7,5 @@ C:\git\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.d
 C:\git\CommandAndConquer\CommandAndConquer.CLI\bin\Debug\CommandAndConquer.CLI.pdb
 C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.dll
 C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.pdb
+C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.csproj.CoreCompileInputs.cache
 C:\git\CommandAndConquer\CommandAndConquer.CLI\obj\Debug\CommandAndConquer.CLI.csprojResolveAssemblyReference.cache

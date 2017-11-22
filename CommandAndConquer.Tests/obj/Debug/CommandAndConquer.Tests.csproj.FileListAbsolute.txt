@@ -1,0 +1,17 @@
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.Tests.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.Tests.pdb
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.CLI.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\nunit.framework.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.CLI.pdb
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\nunit.framework.xml
+C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.csprojResolveAssemblyReference.cache
+C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.csproj.CoreCompileInputs.cache
+C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.dll
+C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.pdb

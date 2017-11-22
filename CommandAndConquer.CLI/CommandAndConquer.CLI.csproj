@@ -44,6 +44,10 @@
     <Compile Include="Attributes\CliController.cs" />
     <Compile Include="Core\Processor.cs" />
     <Compile Include="Models\CommandLineArgument.cs" />
+    <Compile Include="Models\CommandMethod.cs" />
+    <Compile Include="Models\Controller.cs" />
+    <Compile Include="Models\MethodParameters.cs" />
+    <Compile Include="Models\ProcessedArguments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
