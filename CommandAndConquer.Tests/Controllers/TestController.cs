@@ -1,4 +1,5 @@
-﻿using CommandAndConquer.CLI.Attributes;
+﻿using System;
+using CommandAndConquer.CLI.Attributes;
 
 namespace CommandAndConquer.Tests.Controllers
 {
@@ -8,7 +9,7 @@ namespace CommandAndConquer.Tests.Controllers
         [CliCommand("example", "This is an example description.")]
         public static void TestMethod(string required, int opt = 0)
         {
-            
+            Console.WriteLine($"{required} {opt}");
         }
     }
 }

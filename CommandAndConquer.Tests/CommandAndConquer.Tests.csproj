@@ -51,8 +51,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLI\UnitTest1.cs" />
+    <Compile Include="CLI\ExecutionTests.cs" />
+    <Compile Include="CLI\DocumentationTests.cs" />
+    <Compile Include="CLI\BaseCliTest.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestControllerTwo.cs" />
+    <Compile Include="Models\SampleEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

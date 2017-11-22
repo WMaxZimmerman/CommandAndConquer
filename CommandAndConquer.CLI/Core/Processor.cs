@@ -34,7 +34,7 @@ namespace CommandAndConquer.CLI.Core
                     return;
                 }
 
-                controller.ExecuteCommand(arguments.Command, arguments.Arguments);
+                controller.DocumentCommand(arguments.Command);
             }
             else
             {
@@ -68,7 +68,7 @@ namespace CommandAndConquer.CLI.Core
             processedArguments.Controller = TryGetArg(args, 0);
             processedArguments.Command = TryGetArg(args, 1);
 
-            if (args.Length > 2)
+            if (args.Length > 2 && !processedArguments.IsHelpCall)
             {
                 var argsList = args.ToList();
                 argsList.RemoveRange(0, 2);

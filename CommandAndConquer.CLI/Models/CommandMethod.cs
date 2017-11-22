@@ -15,7 +15,7 @@ namespace CommandAndConquer.CLI.Models
         public CommandMethod(MethodInfo info)
         {
             Info = info;
-            Name = info.Name;
+            Name = GetCommandName();
         }
 
         public void Invoke(List<CommandLineArgument> args)
@@ -48,6 +48,7 @@ namespace CommandAndConquer.CLI.Models
                 foreach (var argument in args)
                 {
                     if (argument.Command.ToLower() != parameter.Name.ToLower()) continue;
+                    wasFound = true;
                     object paramValue;
 
                     if (Nullable.GetUnderlyingType(parameter.ParameterType) != null)
@@ -55,13 +56,24 @@ namespace CommandAndConquer.CLI.Models
                         var underType = Nullable.GetUnderlyingType(parameter.ParameterType);
                         paramValue = Convert.ChangeType(argument.Value, underType);
                     }
+                    else if (parameter.ParameterType.IsEnum)
+                    {
+                        var t = parameter.ParameterType;
+                        var options = t.GetEnumNames().ToList();
+
+                        if (!options.Contains(argument.Value))
+                        {
+                            methodParams.Errors.Add($"The specified value of '{argument.Value}' is not valid for the parameter '{argument.Command}'.");
+                            continue;
+                        }
+                        paramValue = Enum.Parse(t, argument.Value);
+                    }
                     else
                     {
                         paramValue = Convert.ChangeType(argument.Value, parameter.ParameterType);
                     }
 
                     methodParams.Parameters.Add(paramValue);
-                    wasFound = true;
                 }
 
                 if (!wasFound)
@@ -131,6 +143,14 @@ namespace CommandAndConquer.CLI.Models
                 var typeName = type.Name;
                 Console.WriteLine($"-{cp.Name} ({typeName}): This parameter is {priorityString}.");
             }
+        }
+
+        private string GetCommandName()
+        {
+            var attribute = (CliCommand)Attribute.GetCustomAttributes(Info)
+                .FirstOrDefault(a => a is CliCommand);
+
+            return attribute?.Name;
         }
     }
 }

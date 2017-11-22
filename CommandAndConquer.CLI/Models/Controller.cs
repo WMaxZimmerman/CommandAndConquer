@@ -15,7 +15,7 @@ namespace CommandAndConquer.CLI.Models
         public Controller(Type type)
         {
             ClassType = type;
-            Name = ClassType.Name;
+            Name = GetControllerName();
             Methods = ClassType.GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliCommand))
                 .Select(c => new CommandMethod(c)).ToList();
@@ -58,6 +58,14 @@ namespace CommandAndConquer.CLI.Models
             }
 
             command.OutputDocumentation();
+        }
+
+        private string GetControllerName()
+        {
+            var attribute = (CliController)Attribute.GetCustomAttributes(ClassType)
+                .FirstOrDefault(a => a is CliController);
+
+            return attribute?.Name;
         }
     }
 }
