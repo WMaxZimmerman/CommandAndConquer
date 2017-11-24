@@ -26,14 +26,15 @@ namespace CommandAndConquer.CLI.Models
                 var paramList = GetParams(args);
                 if (paramList == null) return;
 
-                try
-                {
-                    Info.Invoke(null, BindingFlags.Static, null, paramList, null);
-                }
-                catch (TargetInvocationException e)
-                {
-                    throw e.InnerException;
-                }
+                Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+            }
+            catch (TargetInvocationException e)
+            {
+                var inner = e.InnerException;
+                Console.WriteLine("An error occurred while executing the command.");
+                if (inner == null) return;
+                Console.WriteLine($"Message: {inner.Message}");
+                Console.WriteLine($"Stack Trace: {inner.StackTrace.Trim()}");
             }
             catch (Exception e)
             {
@@ -49,7 +50,7 @@ namespace CommandAndConquer.CLI.Models
 
             foreach (var argument in args.Where(a => Info.GetParameters().All(p => p.Name != a.Command)))
             {
-                methodParams.Errors.Add($"The parameter {argument.Command} is not a valid parameter.");
+                methodParams.Errors.Add($"The parameter '{argument.Command}' is not a valid parameter.");
             }
 
             foreach (var parameter in Info.GetParameters())
@@ -75,7 +76,7 @@ namespace CommandAndConquer.CLI.Models
                                 list.Add(GetParamValue(value, underType));
                             }
 
-                            Array array = Array.CreateInstance(underType, list.Count);
+                            var array = Array.CreateInstance(underType, list.Count);
                             list.CopyTo(array, 0);
 
                             methodParams.Parameters.Add(array);
@@ -109,7 +110,7 @@ namespace CommandAndConquer.CLI.Models
                     }
                     else
                     {
-                        methodParams.Errors.Add($"The parameter {parameter.Name} must be specified.");
+                        methodParams.Errors.Add($"The parameter '{parameter.Name}' must be specified.");
                     }
                 }
             }

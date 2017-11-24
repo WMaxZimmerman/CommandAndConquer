@@ -48,9 +48,10 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "thingOne",
                 "thingThree",
-                "thingTwo"
+                "thingTwo",
+                "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "example2", "-list", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "array", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -64,9 +65,10 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "thingOne",
                 "thingThree",
-                "thingTwo"
+                "thingTwo",
+                "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "example3", "-list", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "list", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -80,9 +82,52 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "thingOne",
                 "thingThree",
-                "thingTwo"
+                "thingTwo",
+                "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "example4", "-list", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "enumerable", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToCallCommandWithArrayParameterWithNoValues()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "3"
+            };
+            Processor.ProcessArguments(new[] { "execute", "array", "-values", "-something", "3" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToCallCommandWithListParameterWithNoValues()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "3"
+            };
+            Processor.ProcessArguments(new[] { "execute", "list", "-values", "-something", "3" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToCallCommandWithEnumerableParameterWithNoValues()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "3"
+            };
+            Processor.ProcessArguments(new[] { "execute", "enumerable", "-values", "-something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

@@ -8,21 +8,63 @@ namespace CommandAndConquer.Tests.CLI
     public class NegativeExecutionTests: BaseCliTest
     {
         [Test]
-        public void AbleToHandleBadCallToCommandWithEnumParameter()
+        public void AbleToHandleMissingAllAguments()
         {
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
-                "The specified value of 'Enum' is not valid for the parameter 'sample'."
+                "Please enter a controller.  Use '?' to see available controllers."
             };
-            Processor.ProcessArguments(new[] { "execute", "example", "-sample", "Enum" });
+            Processor.ProcessArguments(new string[] {});
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
         }
 
         [Test]
-        public void AbleToHandleBadCallToCommand()
+        public void AbleToHandleMissingAllAgumentsAfterController()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "'' is not a valid command.  Use '?' to see available commands."
+            };
+            Processor.ProcessArguments(new[] { "execute" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToHandleMissingParameters()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "The parameter 'sample' must be specified."
+            };
+            Processor.ProcessArguments(new[] { "execute", "example" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToHandleInvalidParameters()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "The parameter 'invalidParam' is not a valid parameter."
+            };
+            Processor.ProcessArguments(new[] { "execute", "example", "-sample", "EnumOne", "-invalidParam", "bad" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToHandleInvalidParameterValue()
         {
             mockConsole.Clear();
             var consoleLines = new List<string>
@@ -32,6 +74,22 @@ namespace CommandAndConquer.Tests.CLI
                 "Please verify the command usage with '?' and try again."
             };
             Processor.ProcessArguments(new[] { "execute", "example", "-sample", "Enum" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+        
+        [Test]
+        public void AbleToHandleCallToCommandThatThrowsException()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "An error occurred while executing the command.",
+                "Message: I blew up yer thingy.",
+                @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 20"
+            };
+            Processor.ProcessArguments(new[] { "execute", "exception", "-sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

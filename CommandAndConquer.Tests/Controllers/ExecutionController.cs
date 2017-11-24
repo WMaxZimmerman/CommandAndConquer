@@ -14,31 +14,40 @@ namespace CommandAndConquer.Tests.Controllers
             Console.WriteLine($"{Enum.GetName(typeof(SampleEnum), sample)}");
         }
 
-        [CliCommand("example2", "This is an example description.")]
-        public static void TestMethod1(string[] list, int something)
+        [CliCommand("exception", "This is an command that will throw an exception.")]
+        public static void ThrowExceptionMethod(SampleEnum sample)
         {
-            foreach (var l in list)
-            {
-                Console.WriteLine(l);
-            }
+            throw new Exception("I blew up yer thingy.");
         }
 
-        [CliCommand("example3", "This is an example description.")]
-        public static void TestMethod2(List<string> list, int something)
+        [CliCommand("array", "This is an example description.")]
+        public static void TestMethod1(string[] values, int something)
         {
-            foreach (var l in list)
+            foreach (var l in values)
             {
                 Console.WriteLine(l);
             }
+            Console.WriteLine(something);
         }
 
-        [CliCommand("example4", "This is an example description.")]
-        public static void TestMethod3(IEnumerable<string> list, int something)
+        [CliCommand("list", "This is an example description.")]
+        public static void TestMethod2(List<string> values, int something)
         {
-            foreach (var l in list)
+            foreach (var l in values)
             {
                 Console.WriteLine(l);
             }
+            Console.WriteLine(something);
+        }
+
+        [CliCommand("enumerable", "This is an example description.")]
+        public static void TestMethod3(IEnumerable<string> values, int something)
+        {
+            foreach (var l in values)
+            {
+                Console.WriteLine(l);
+            }
+            Console.WriteLine(something);
         }
     }
 }
