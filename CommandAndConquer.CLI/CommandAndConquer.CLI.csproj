@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,6 +44,7 @@
     <Compile Include="Attributes\CliCommand.cs" />
     <Compile Include="Attributes\CliController.cs" />
     <Compile Include="Core\Processor.cs" />
+    <Compile Include="Core\Settings.cs" />
     <Compile Include="Models\CommandLineArgument.cs" />
     <Compile Include="Models\CommandMethod.cs" />
     <Compile Include="Models\Controller.cs" />
@@ -50,6 +52,8 @@
     <Compile Include="Models\ProcessedArguments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

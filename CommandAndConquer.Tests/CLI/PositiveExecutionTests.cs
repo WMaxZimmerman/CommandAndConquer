@@ -12,7 +12,7 @@ namespace CommandAndConquer.Tests.CLI
         {
             mockConsole.Clear();
             var consoleLines = new List<string> {"bleh 0"};
-            Processor.ProcessArguments(new[] {"document", "example", "-required", "bleh"});
+            Processor.ProcessArguments(new[] {"document", "example", $"{argPre}required", "bleh"});
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -23,7 +23,7 @@ namespace CommandAndConquer.Tests.CLI
         {
             mockConsole.Clear();
             var consoleLines = new List<string> {"bleh 5"};
-            Processor.ProcessArguments(new[] { "document", "example", "-required", "bleh", "-opt", "5" });
+            Processor.ProcessArguments(new[] { "document", "example", $"{argPre}required", "bleh", $"{argPre}opt", "5" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -34,7 +34,7 @@ namespace CommandAndConquer.Tests.CLI
         {
             mockConsole.Clear();
             var consoleLines = new List<string> {"EnumOne"};
-            Processor.ProcessArguments(new[] { "execute", "example", "-sample", "EnumOne" });
+            Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -51,7 +51,7 @@ namespace CommandAndConquer.Tests.CLI
                 "thingTwo",
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "array", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "array", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -68,7 +68,7 @@ namespace CommandAndConquer.Tests.CLI
                 "EnumThree",
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "list", "-values", "EnumTwo", "EnumOne", "EnumThree", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "list", $"{argPre}values", "EnumTwo", "EnumOne", "EnumThree", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -85,7 +85,7 @@ namespace CommandAndConquer.Tests.CLI
                 "thingTwo",
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "enumerable", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -99,7 +99,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "array", "-values", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "array", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -113,7 +113,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "list", "-values", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "list", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -127,7 +127,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "enumerable", "-values", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

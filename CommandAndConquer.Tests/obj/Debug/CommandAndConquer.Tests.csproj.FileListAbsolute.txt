@@ -15,3 +15,5 @@ C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tes
 C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.csproj.CoreCompileInputs.cache
 C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.dll
 C:\git\CommandAndConquer\CommandAndConquer.Tests\obj\Debug\CommandAndConquer.Tests.pdb
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.CLI.dll.config
+C:\git\CommandAndConquer\CommandAndConquer.Tests\bin\Debug\CommandAndConquer.Tests.dll.config

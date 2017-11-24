@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text;
+using CommandAndConquer.CLI.Core;
 using NUnit.Framework;
 
 namespace CommandAndConquer.Tests.CLI
@@ -12,6 +14,8 @@ namespace CommandAndConquer.Tests.CLI
         protected StringWriter consoleMock;
         protected StringBuilder mockConsole = new StringBuilder();
         protected const string NewLine = "\r\n";
+        protected string helpString = Settings.HelpString;
+        protected string argPre = Settings.ArgumentPrefix;
 
         [SetUp]
         public void Init()

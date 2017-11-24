@@ -16,7 +16,7 @@ namespace CommandAndConquer.Tests.CLI
                 "document - This is a test description.",
                 "execute - This is a test description."
             };
-            Processor.ProcessArguments(new[] { "?" });
+            Processor.ProcessArguments(new[] { helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, false);
             Assert.IsTrue(temp == expectedString);
@@ -31,10 +31,10 @@ namespace CommandAndConquer.Tests.CLI
                 "example",
                 "Description: This is an example description.",
                 "Parameters:",
-                "-required (String): This parameter is Required.",
-                "-opt (Int32): This parameter is Optional."
+                $"{argPre}required (String): This parameter is Required.",
+                $"{argPre}opt (Int32): This parameter is Optional."
             };
-            Processor.ProcessArguments(new[] { "document", "?" });
+            Processor.ProcessArguments(new[] { "document", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
@@ -49,10 +49,10 @@ namespace CommandAndConquer.Tests.CLI
                 "example",
                 "Description: This is an example description.",
                 "Parameters:",
-                "-required (String): This parameter is Required.",
-                "-opt (Int32): This parameter is Optional."
+                $"{argPre}required (String): This parameter is Required.",
+                $"{argPre}opt (Int32): This parameter is Optional."
             };
-            Processor.ProcessArguments(new[] { "document", "example", "?" });
+            Processor.ProcessArguments(new[] { "document", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
@@ -67,9 +67,9 @@ namespace CommandAndConquer.Tests.CLI
                 "example",
                 "Description: This is an example description.",
                 "Parameters:",
-                "-sample (SampleEnum): This parameter is Required and must be one of the following (EnumOne, EnumTwo, EnumThree)."
+                $"{argPre}sample (SampleEnum): This parameter is Required and must be one of the following (EnumOne, EnumTwo, EnumThree)."
             };
-            Processor.ProcessArguments(new[] { "execute", "example", "?" });
+            Processor.ProcessArguments(new[] { "execute", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
@@ -84,10 +84,10 @@ namespace CommandAndConquer.Tests.CLI
                 "list",
                 "Description: This is an example description.",
                 "Parameters:",
-                "-values (List of SampleEnum): This parameter is Required and must be a collection of one of the following (EnumOne, EnumTwo, EnumThree).",
-                "-something (Int32): This parameter is Required."
+                $"{argPre}values (List of SampleEnum): This parameter is Required and must be a collection of one of the following (EnumOne, EnumTwo, EnumThree).",
+                $"{argPre}something (Int32): This parameter is Required."
             };
-            Processor.ProcessArguments(new[] { "execute", "list", "?" });
+            Processor.ProcessArguments(new[] { "execute", "list", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);

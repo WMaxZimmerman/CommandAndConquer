@@ -9,13 +9,11 @@ namespace CommandAndConquer.CLI.Core
 {
     public static class Processor
     {
-        private const string helpString = "?";
-
         public static void ProcessArguments(string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine($"Please enter a controller.  Use '{helpString}' to see available controllers.");
+                Console.WriteLine($"Please enter a controller.  Use '{Settings.HelpString}' to see available controllers.");
                 return;
             }
 
@@ -41,7 +39,7 @@ namespace CommandAndConquer.CLI.Core
                 var controller = controllers.FirstOrDefault(c => c.Name == arguments.Controller);
                 if (controller == null)
                 {
-                    Console.WriteLine($"'{args[0]}' is not a valid controller.  Use '{helpString}' to see available controllers.");
+                    Console.WriteLine($"'{args[0]}' is not a valid controller.  Use '{Settings.HelpString}' to see available controllers.");
                     return;
                 }
 
@@ -59,12 +57,12 @@ namespace CommandAndConquer.CLI.Core
         }
 
         private static ProcessedArguments ProcessArgs(string[] args)
-        {
+        {;
             var processedArguments = new ProcessedArguments();
 
             if (args.Length == 0) return processedArguments;
 
-            processedArguments.IsHelpCall = args[args.Length - 1] == helpString;
+            processedArguments.IsHelpCall = args[args.Length - 1] == Settings.HelpString;
             processedArguments.Controller = TryGetArg(args, 0);
             processedArguments.Command = TryGetArg(args, 1);
 
@@ -83,7 +81,7 @@ namespace CommandAndConquer.CLI.Core
             try
             {
                 var arg = args[index];
-                return arg == helpString ? null : arg;
+                return arg == Settings.HelpString ? null : arg;
             }
             catch (Exception)
             {
@@ -98,17 +96,18 @@ namespace CommandAndConquer.CLI.Core
 
             foreach (var argument in args)
             {
-                if (argument.StartsWith("-"))
+                if (argument.StartsWith(Settings.ArgumentPrefix))
                 {
                     if (tempArg != null) arguments.Add(tempArg);
                     tempArg = new CommandLineArgument
                     {
-                        Command = argument.Substring(1),
+                        Command = argument.Replace(Settings.ArgumentPrefix, ""),
                         Order = arguments.Count + 1
                     };
                 }
                 else
                 {
+                    if (tempArg == null) continue;
                     tempArg.Values.Add(argument);
                 }
             }

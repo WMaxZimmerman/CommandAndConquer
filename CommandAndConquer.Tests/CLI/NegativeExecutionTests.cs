@@ -13,7 +13,7 @@ namespace CommandAndConquer.Tests.CLI
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
-                "Please enter a controller.  Use '?' to see available controllers."
+                $"Please enter a controller.  Use '{helpString}' to see available controllers."
             };
             Processor.ProcessArguments(new string[] {});
             var temp = mockConsole.ToString();
@@ -57,7 +57,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "The parameter 'invalidParam' is not a valid parameter."
             };
-            Processor.ProcessArguments(new[] { "execute", "example", "-sample", "EnumOne", "-invalidParam", "bad" });
+            Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "EnumOne", $"{argPre}invalidParam", "bad" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -71,9 +71,9 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "An error occured while attempting to execute the command.",
                 "This is most likely due to invalid arguments.",
-                "Please verify the command usage with '?' and try again."
+                $"Please verify the command usage with '{helpString}' and try again."
             };
-            Processor.ProcessArguments(new[] { "execute", "example", "-sample", "Enum" });
+            Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "Enum" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
@@ -89,7 +89,7 @@ namespace CommandAndConquer.Tests.CLI
                 "Message: I blew up yer thingy.",
                 @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 20"
             };
-            Processor.ProcessArguments(new[] { "execute", "exception", "-sample", "EnumOne" });
+            Processor.ProcessArguments(new[] { "execute", "exception", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

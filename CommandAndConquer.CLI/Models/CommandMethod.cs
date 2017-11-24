@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CommandAndConquer.CLI.Attributes;
+using CommandAndConquer.CLI.Core;
 
 namespace CommandAndConquer.CLI.Models
 {
@@ -40,7 +41,7 @@ namespace CommandAndConquer.CLI.Models
             {
                 Console.WriteLine("An error occured while attempting to execute the command.");
                 Console.WriteLine("This is most likely due to invalid arguments.");
-                Console.WriteLine("Please verify the command usage with '?' and try again.");
+                Console.WriteLine($"Please verify the command usage with '{Settings.HelpString}' and try again.");
             }
         }
 
@@ -192,7 +193,7 @@ namespace CommandAndConquer.CLI.Models
             type = Nullable.GetUnderlyingType(type) ?? type;
 
             var typeString = $"{(isEnumerable ? "List of " : "")}{type.Name}";
-            var docString = $"-{cp.Name} ({typeString}): This parameter is {priorityString}";
+            var docString = $"{Settings.ArgumentPrefix}{cp.Name} ({typeString}): This parameter is {priorityString}";
 
             if (type.IsEnum)
             {
