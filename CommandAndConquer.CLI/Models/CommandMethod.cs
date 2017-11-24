@@ -175,18 +175,41 @@ namespace CommandAndConquer.CLI.Models
         private void OutputParameterDocumentation(ParameterInfo cp)
         {
             var priorityString = cp.HasDefaultValue ? "Optional" : "Required";
-            var type = Nullable.GetUnderlyingType(cp.ParameterType) ?? cp.ParameterType;
-        
+            var type = cp.ParameterType;
+            var isEnumerable = IsEnumerable(type);
+            if (isEnumerable)
+            {
+                if (type.GetGenericArguments().Length <= 0)
+                {
+                    type = type.GetElementType();
+                }
+                else
+                {
+                    type = type.GenericTypeArguments[0];
+                }
+            }
+
+            type = Nullable.GetUnderlyingType(type) ?? type;
+
+            var typeString = $"{(isEnumerable ? "List of " : "")}{type.Name}";
+            var docString = $"-{cp.Name} ({typeString}): This parameter is {priorityString}";
+
             if (type.IsEnum)
             {
                 var names = type.GetEnumNames();
-                Console.WriteLine($"-{cp.Name} (string): This parameter is {priorityString} and must be one of these following ({string.Join(",", names)}).");
+                docString += $" and must be {(isEnumerable ? "a collection of " : "")}one of the following ({string.Join(", ", names)}).";
             }
             else
             {
-                var typeName = type.Name;
-                Console.WriteLine($"-{cp.Name} ({typeName}): This parameter is {priorityString}.");
+                docString += ".";
             }
+
+            Console.WriteLine(docString);
+        }
+
+        private bool IsEnumerable(Type type)
+        {
+            return typeof(IEnumerable).IsAssignableFrom(type) && type.Name != "String";
         }
 
         private string GetCommandName()

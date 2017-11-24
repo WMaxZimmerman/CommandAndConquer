@@ -63,12 +63,12 @@ namespace CommandAndConquer.Tests.CLI
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
-                "thingOne",
-                "thingThree",
-                "thingTwo",
+                "EnumTwo",
+                "EnumOne",
+                "EnumThree",
                 "3"
             };
-            Processor.ProcessArguments(new[] { "execute", "list", "-values", "thingOne", "thingThree", "thingTwo", "-something", "3" });
+            Processor.ProcessArguments(new[] { "execute", "list", "-values", "EnumTwo", "EnumOne", "EnumThree", "-something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

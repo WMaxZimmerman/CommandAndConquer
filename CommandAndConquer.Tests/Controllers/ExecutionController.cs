@@ -31,7 +31,7 @@ namespace CommandAndConquer.Tests.Controllers
         }
 
         [CliCommand("list", "This is an example description.")]
-        public static void TestMethod2(List<string> values, int something)
+        public static void TestMethod2(List<SampleEnum> values, int something)
         {
             foreach (var l in values)
             {

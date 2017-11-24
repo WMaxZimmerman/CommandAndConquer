@@ -67,9 +67,27 @@ namespace CommandAndConquer.Tests.CLI
                 "example",
                 "Description: This is an example description.",
                 "Parameters:",
-                "-sample (string): This parameter is Required and must be one of these following (EnumOne,EnumTwo,EnumThree)."
+                "-sample (SampleEnum): This parameter is Required and must be one of the following (EnumOne, EnumTwo, EnumThree)."
             };
             Processor.ProcessArguments(new[] { "execute", "example", "?" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToRetriveCommandDocumentationWithListOfEnum()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "list",
+                "Description: This is an example description.",
+                "Parameters:",
+                "-values (List of SampleEnum): This parameter is Required and must be a collection of one of the following (EnumOne, EnumTwo, EnumThree).",
+                "-something (Int32): This parameter is Required."
+            };
+            Processor.ProcessArguments(new[] { "execute", "list", "?" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
