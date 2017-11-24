@@ -1,0 +1,7 @@
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.Template.exe.config
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.Template.exe
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.Template.pdb
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConquer.CLI.dll
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.csproj.CoreCompileInputs.cache
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.exe
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.pdb

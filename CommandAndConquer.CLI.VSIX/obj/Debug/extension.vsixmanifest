@@ -1,0 +1,23 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="WMZ.CommandAndConquer.CLI.Template" Version="2.0" Language="en-US" Publisher="Max Zimmerman" />
+    <DisplayName>CommandAndConquer.CLI.Template</DisplayName>
+    <Description xml:space="preserve">This is a template to be used as a starting point and example for building Command Line Applications using the CommandAndConquer NuGet package.</Description>
+    <MoreInfo>https://github.com/WMaxZimmerman/CommandAndConquer</MoreInfo>
+    <Icon>icon.png</Icon>
+    <PreviewImage>icon.png</PreviewImage>
+    <Tags>Command, CLI, Terminal, Console, CommandLine, CommandAndConquer, MVCLI</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" Path="ProjectTemplates" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+</PackageManifest>
