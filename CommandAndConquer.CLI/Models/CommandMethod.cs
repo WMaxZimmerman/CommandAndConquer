@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,16 +21,25 @@ namespace CommandAndConquer.CLI.Models
 
         public void Invoke(List<CommandLineArgument> args)
         {
-            var paramList = GetParams(args);
-            if (paramList == null) return;
-
             try
             {
-                Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+                var paramList = GetParams(args);
+                if (paramList == null) return;
+
+                try
+                {
+                    Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+                }
+                catch (TargetInvocationException e)
+                {
+                    throw e.InnerException;
+                }
             }
-            catch (TargetInvocationException e)
+            catch (Exception e)
             {
-                throw e.InnerException;
+                Console.WriteLine("An error occured while attempting to execute the command.");
+                Console.WriteLine("This is most likely due to invalid arguments.");
+                Console.WriteLine("Please verify the command usage with '?' and try again.");
             }
         }
 
@@ -49,31 +59,46 @@ namespace CommandAndConquer.CLI.Models
                 {
                     if (argument.Command.ToLower() != parameter.Name.ToLower()) continue;
                     wasFound = true;
-                    object paramValue;
 
-                    if (Nullable.GetUnderlyingType(parameter.ParameterType) != null)
-                    {
-                        var underType = Nullable.GetUnderlyingType(parameter.ParameterType);
-                        paramValue = Convert.ChangeType(argument.Value, underType);
-                    }
-                    else if (parameter.ParameterType.IsEnum)
-                    {
-                        var t = parameter.ParameterType;
-                        var options = t.GetEnumNames().ToList();
+                    var type = parameter.ParameterType;
 
-                        if (!options.Contains(argument.Value))
+                    if (typeof(IEnumerable).IsAssignableFrom(type) && type.Name != "String")
+                    {
+                        if (type.GetGenericArguments().Length <= 0)
                         {
-                            methodParams.Errors.Add($"The specified value of '{argument.Value}' is not valid for the parameter '{argument.Command}'.");
-                            continue;
+                            var underType = type.GetElementType();
+                            var listType = typeof(List<>).MakeGenericType(underType);
+                            var list = (IList)Activator.CreateInstance(listType);
+
+                            foreach (var value in argument.Values)
+                            {
+                                list.Add(GetParamValue(value, underType));
+                            }
+
+                            Array array = Array.CreateInstance(underType, list.Count);
+                            list.CopyTo(array, 0);
+
+                            methodParams.Parameters.Add(array);
                         }
-                        paramValue = Enum.Parse(t, argument.Value);
+                        else
+                        {
+                            var underType = type.GenericTypeArguments[0];
+                            var listType = typeof(List<>).MakeGenericType(underType);
+                            var list = (IList)Activator.CreateInstance(listType);
+
+                            foreach (var value in argument.Values)
+                            {
+                                list.Add(GetParamValue(value, underType));
+                            }
+
+                            methodParams.Parameters.Add(list);
+                        }
                     }
                     else
                     {
-                        paramValue = Convert.ChangeType(argument.Value, parameter.ParameterType);
+                        dynamic val = GetParamValue(argument.Values[0], parameter.ParameterType);
+                        methodParams.Parameters.Add(val);
                     }
-
-                    methodParams.Parameters.Add(paramValue);
                 }
 
                 if (!wasFound)
@@ -114,6 +139,24 @@ namespace CommandAndConquer.CLI.Models
                     }
                 }
             }
+        }
+
+        private dynamic GetParamValue(string value, Type type)
+        {
+            if (Nullable.GetUnderlyingType(type) != null)
+            {
+                var underType = Nullable.GetUnderlyingType(type);
+                dynamic val = Convert.ChangeType(value, underType);
+                return val;
+            }
+
+            if (type.IsEnum)
+            {
+                return Enum.Parse(type, value);
+            }
+
+            dynamic pVal = Convert.ChangeType(value, type);
+            return pVal;
         }
 
         private object[] GetParams(List<CommandLineArgument> args)

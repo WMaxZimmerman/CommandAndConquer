@@ -13,12 +13,12 @@ namespace CommandAndConquer.Tests.CLI
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
-                "test - This is a test description.",
-                "test2 - This is a test description."
+                "document - This is a test description.",
+                "execute - This is a test description."
             };
             Processor.ProcessArguments(new[] { "?" });
             var temp = mockConsole.ToString();
-            var expectedString = ConvertConsoleLinesToString(consoleLines, true, false);
+            var expectedString = ConvertConsoleLinesToString(consoleLines, false);
             Assert.IsTrue(temp == expectedString);
         }
 
@@ -34,9 +34,9 @@ namespace CommandAndConquer.Tests.CLI
                 "-required (String): This parameter is Required.",
                 "-opt (Int32): This parameter is Optional."
             };
-            Processor.ProcessArguments(new[] { "test", "?" });
+            Processor.ProcessArguments(new[] { "document", "?" });
             var temp = mockConsole.ToString();
-            var expectedString = ConvertConsoleLinesToString(consoleLines, true, true);
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
         }
 
@@ -52,9 +52,9 @@ namespace CommandAndConquer.Tests.CLI
                 "-required (String): This parameter is Required.",
                 "-opt (Int32): This parameter is Optional."
             };
-            Processor.ProcessArguments(new[] { "test", "example", "?" });
+            Processor.ProcessArguments(new[] { "document", "example", "?" });
             var temp = mockConsole.ToString();
-            var expectedString = ConvertConsoleLinesToString(consoleLines, true, true);
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
         }
 
@@ -69,9 +69,9 @@ namespace CommandAndConquer.Tests.CLI
                 "Parameters:",
                 "-sample (string): This parameter is Required and must be one of these following (EnumOne,EnumTwo,EnumThree)."
             };
-            Processor.ProcessArguments(new[] { "test2", "example", "?" });
+            Processor.ProcessArguments(new[] { "execute", "example", "?" });
             var temp = mockConsole.ToString();
-            var expectedString = ConvertConsoleLinesToString(consoleLines, true, true);
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
         }
     }

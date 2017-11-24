@@ -20,7 +20,7 @@ namespace CommandAndConquer.Tests.CLI
             Console.SetOut(consoleMock);
         }
 
-        protected string ConvertConsoleLinesToString(List<string> lines, bool endingNewLine, bool startingNewLine)
+        protected string ConvertConsoleLinesToString(List<string> lines, bool startingNewLine = false, bool endingNewLine = true)
         {
             var consoleString = string.Join(NewLine, lines);
             if (endingNewLine) consoleString += NewLine;

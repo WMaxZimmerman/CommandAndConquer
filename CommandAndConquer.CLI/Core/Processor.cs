@@ -52,7 +52,7 @@ namespace CommandAndConquer.CLI.Core
         private static List<Controller> GetControllers(Assembly callingAssembly)
         {
             var controllerList = callingAssembly.GetTypes()
-                .Where(t => t.IsClass && t.Namespace.EndsWith(".Controllers") && Attribute.GetCustomAttributes(t).Any(a => a is CliController))
+                .Where(t => Attribute.GetCustomAttributes(t).Any(a => a is CliController))
                 .Select(t => new Controller(t));
             
             return controllerList.ToList();
@@ -109,7 +109,7 @@ namespace CommandAndConquer.CLI.Core
                 }
                 else
                 {
-                    tempArg.Value = argument;
+                    tempArg.Values.Add(argument);
                 }
             }
             arguments.Add(tempArg);

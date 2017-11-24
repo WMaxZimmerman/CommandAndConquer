@@ -3,8 +3,8 @@ using CommandAndConquer.CLI.Attributes;
 
 namespace CommandAndConquer.Tests.Controllers
 {
-    [CliController("test", "This is a test description.")]
-    public static class TestController
+    [CliController("document", "This is a test description.")]
+    public static class DocumentationController
     {
         [CliCommand("example", "This is an example description.")]
         public static void TestMethod(string required, int opt = 0)
@@ -12,4 +12,9 @@ namespace CommandAndConquer.Tests.Controllers
             Console.WriteLine($"{required} {opt}");
         }
     }
+}
+
+public static class BlowShitUp
+{
+    
 }
