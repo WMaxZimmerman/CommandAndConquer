@@ -7,12 +7,7 @@ To start using CommandAndConquer there are two routes (three if you include pull
 The easiest way to start using CommandAndConquer is to install [this template](https://marketplace.visualstudio.com/items?itemName=wmaxzimmerman.CommandAndConquerCLI01). After you have installed the template you can use it to create a new project. That project will have all of the needed boiler plate to be able to start creating a CommandAndConquer application. If you go this route you will probably notice how light the template really is.  The 'Program.cs' file only has only line of added code (Not including usings) and there is only one additional class. That class can be found in the 'Controllers' folder and will be name 'ExampleController.cs'. This class is designed to be an example of how you can setup controllers and commands for the CommandAndConquer framework. If you need more information than the examples provided in the code you can read on here.
 
 # The Hard Way
-If you already have an exisitng Console Application or you just hate super easy and convenient templates, you can setup the boiler plate manually with limited effort. To setup CommandAndConquer manually you will need to first install [this nuget package](https://www.nuget.org/packages/WMZ.CommandAndConquer.CLI/). After doing that you will want to add the following values to the 'appsettings' section of your 'App.config' file.
-
-<add key="helpString" value="?" />  
-<add key="argumentPrefix" value="--" />
-
-If you do not have and 'appsettings' section you can simply add one. Now that we have the nuget package and our app.config ready we will want to update 'Program.cs' file. Inside of the 'Main' method of the 'Program.cs' you will want to add this line:
+If you already have an exisitng Console Application or you just hate super easy and convenient templates, you can setup the boiler plate manually with limited effort. To setup CommandAndConquer manually you will need to first install [this nuget package](https://www.nuget.org/packages/WMZ.CommandAndConquer.CLI/). Now that we have the nuget package ready we will want to update 'Program.cs' file. Inside of the 'Main' method of the 'Program.cs' you will want to add this line:
 
 Processor.ProcessArgs(args);
 
@@ -42,4 +37,9 @@ Notice the '--' infront of the <parameter>. This is the format that lets Command
 You might be thinking, "That all sounds great, but what if it recieves bad input?" CommandAndConquer is setup to handle invalid input gracefully.  It will valid all of the inputs before even attempting to execute your code, and if any of the inputs violate type or arguments it will notify the user and stop any further execution before reaching your code. CommandAndConquer will also gracefully handle errors that might happen in your code (Not that that would happen cause your code is flawless). If an error occurs in your code it will output the error message and the stack trace to the terminal.
 
 # Configuration
-If you don't like the defaults that I setup you can change the 'helpString' and the 'argumentPrefix' in the 'App.config' file. You should keep in mind that if you change these values then some of this documentation may no longer apply as it assumes you are using the defaults.
+If you don't like the defaults that I setup you can change the 'helpString' and the 'argumentPrefix' in the 'App.config' file. To do this simply add these lines:
+
+<add key="helpString" value="?" />
+<add key="argumentPrefix" value="--" />
+
+If you don't have an 'appsettings' section of your 'App.config' you can simply add one and then add the lines there. You should keep in mind that if you change these values then some of this documentation may no longer apply as it assumes you are using the defaults.
