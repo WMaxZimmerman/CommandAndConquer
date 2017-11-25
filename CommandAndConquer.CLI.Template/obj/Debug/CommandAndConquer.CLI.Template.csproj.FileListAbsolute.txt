@@ -5,3 +5,4 @@ C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\bin\Debug\CommandAndConq
 C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.csproj.CoreCompileInputs.cache
 C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.exe
 C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.pdb
+C:\git\CommandAndConquer\CommandAndConquer.CLI.Template\obj\Debug\CommandAndConquer.CLI.Template.csprojResolveAssemblyReference.cache
