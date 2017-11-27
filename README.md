@@ -9,7 +9,9 @@ The easiest way to start using CommandAndConquer is to install [this template](h
 # The Hard Way
 If you already have an exisitng Console Application or you just hate super easy and convenient templates, you can setup the boiler plate manually with limited effort. To setup CommandAndConquer manually you will need to first install [this nuget package](https://www.nuget.org/packages/WMZ.CommandAndConquer.CLI/). Now that we have the nuget package ready we will want to update 'Program.cs' file. Inside of the 'Main' method of the 'Program.cs' you will want to add this line:
 
+```
 Processor.ProcessArgs(args);
+```
 
 This will send all of your command line arguments to CommandAndConquer to be validated and processed. Once we have that done we have finished all of the boiler plate for CommandAndConquer. Now we can move on to writing the code for your application.
 
@@ -29,7 +31,9 @@ To wire in your paramters you have to do... nothing. Yes, nothing. No more if/se
 # Usage
 Once you have setup the boiler plate and have at least one controller and method (Done for you if you used the template) you can build your executable and navigate to it in a terminal and start to run your application. To execute your code you will use the pattern:
 
+```
 <yourprogam.exe> <controller> <command> --<parameter> <value>
+```
 
 Notice the '--' infront of the <parameter>. This is the format that lets CommandAndConquer know when a paramter starts and will add the following arguments to it as values. It is good to know that if you have a List/Array/IEnumerable as your type that it will pass in all values until the next parameter. If the parameter is not a IEnumerable than it will only get the first value assigned and the others will be ignored.
 
@@ -39,8 +43,10 @@ You might be thinking, "That all sounds great, but what if it recieves bad input
 # Configuration
 If you don't like the defaults that I setup you can change the 'helpString' and the 'argumentPrefix' in the 'App.config' file. To do this simply add these lines:
 
+```
 <add key="helpString" value="?" />
 <add key="argumentPrefix" value="--" />
+```
 
 If you don't have an 'appsettings' section of your 'App.config' you can simply add one and then add the lines there. You should keep in mind that if you change these values then some of this documentation may no longer apply as it assumes you are using the defaults.
 
@@ -75,3 +81,8 @@ public static class ExampleController
   }  
 }  
 ```  
+ Usage:
+ 
+ ```
+ helloworld.exe example command --name World  
+ ```
