@@ -43,3 +43,35 @@ If you don't like the defaults that I setup you can change the 'helpString' and 
 <add key="argumentPrefix" value="--" />
 
 If you don't have an 'appsettings' section of your 'App.config' you can simply add one and then add the lines there. You should keep in mind that if you change these values then some of this documentation may no longer apply as it assumes you are using the defaults.
+
+# Hello World
+
+Program.cs:  
+  
+```  
+using CommandAndConquer.Core;  
+  
+public class Program  
+{  
+  public method Main(string[] args)  
+  {  
+     Processor.ProcessArgs(args);  
+  }  
+}  
+```  
+
+Controller:  
+  
+```  
+using CommandAndConquer.CLI.Attributes;  
+  
+[CliController("example", "this is the description")]  
+public static class ExampleController  
+{  
+  [CliCommand("command", "this is the description for the command")]  
+  public static void MethodToBeExecuted(string name)  
+  {  
+    System.Console.WriteLine("Hello, " + name);  
+  }  
+}  
+```  
