@@ -58,6 +58,23 @@ namespace CommandAndConquer.Tests.CLI
         }
 
         [Test]
+        public void AbleToCallCommandWithParameterAlias()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "thingOne",
+                "thingThree",
+                "thingTwo",
+                "3"
+            };
+            Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}s", "3" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
         public void AbleToCallCommandWithListParameter()
         {
             mockConsole.Clear();

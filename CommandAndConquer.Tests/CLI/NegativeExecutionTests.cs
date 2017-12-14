@@ -27,7 +27,7 @@ namespace CommandAndConquer.Tests.CLI
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
-                "'' is not a valid command.  Use '?' to see available commands."
+                $"'' is not a valid command.  Use '{helpString}' to see available commands."
             };
             Processor.ProcessArguments(new[] { "execute" });
             var temp = mockConsole.ToString();

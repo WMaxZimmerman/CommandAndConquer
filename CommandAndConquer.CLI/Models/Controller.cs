@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CommandAndConquer.CLI.Attributes;
+using CommandAndConquer.CLI.Core;
 
 namespace CommandAndConquer.CLI.Models
 {
@@ -26,7 +27,7 @@ namespace CommandAndConquer.CLI.Models
             var command = Methods.FirstOrDefault(c => c.Name == commandName);
             if (command == null)
             {
-                Console.WriteLine($"'{commandName}' is not a valid command.  Use '?' to see available commands.");
+                Console.WriteLine($"'{commandName}' is not a valid command.  Use '{Settings.HelpString}' to see available commands.");
                 return;
             }
 

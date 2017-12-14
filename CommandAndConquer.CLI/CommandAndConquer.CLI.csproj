@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Attributes\CliCommand.cs" />
     <Compile Include="Attributes\CliController.cs" />
+    <Compile Include="Attributes\CliParameter.cs" />
     <Compile Include="Core\Processor.cs" />
     <Compile Include="Core\Settings.cs" />
     <Compile Include="Models\CommandLineArgument.cs" />

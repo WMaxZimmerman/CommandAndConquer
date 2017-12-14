@@ -41,7 +41,7 @@ namespace CommandAndConquer.Tests.Controllers
         }
 
         [CliCommand("enumerable", "This is an example description.")]
-        public static void TestMethod3(IEnumerable<string> values, int something)
+        public static void TestMethod3(IEnumerable<string> values, [CliParameter("s")]int something)
         {
             foreach (var l in values)
             {

@@ -49,7 +49,7 @@ namespace CommandAndConquer.CLI.Models
         {
             var methodParams = new MethodParameters();
 
-            foreach (var argument in args.Where(a => Info.GetParameters().All(p => p.Name != a.Command)))
+            foreach (var argument in args.Where(a => Info.GetParameters().All(p => p.Name != a.Command && p.GetCustomAttribute<CliParameter>()?.Alias != a.Command)))
             {
                 methodParams.Errors.Add($"The parameter '{argument.Command}' is not a valid parameter.");
             }
@@ -59,7 +59,18 @@ namespace CommandAndConquer.CLI.Models
                 var wasFound = false;
                 foreach (var argument in args)
                 {
-                    if (argument.Command.ToLower() != parameter.Name.ToLower()) continue;
+                    if (argument.Command.ToLower() != parameter.Name.ToLower())
+                    {
+                        var paramAttribute = parameter.GetCustomAttribute<CliParameter>();
+                        if (paramAttribute != null)
+                        {
+                            if (paramAttribute.Alias.ToLower() != argument.Command.ToLower()) continue;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
                     wasFound = true;
 
                     var type = parameter.ParameterType;
@@ -193,7 +204,12 @@ namespace CommandAndConquer.CLI.Models
             type = Nullable.GetUnderlyingType(type) ?? type;
 
             var typeString = $"{(isEnumerable ? "List of " : "")}{type.Name}";
-            var docString = $"{Settings.ArgumentPrefix}{cp.Name} ({typeString}): This parameter is {priorityString}";
+            var aliasString = "";
+            if (cp.GetCustomAttribute<CliParameter>() != null)
+            {
+                aliasString = $" | {Settings.ArgumentPrefix}{cp.GetCustomAttribute<CliParameter>().Alias}";
+            }
+            var docString = $"{Settings.ArgumentPrefix}{cp.Name}{aliasString} ({typeString}): This parameter is {priorityString}";
 
             if (type.IsEnum)
             {

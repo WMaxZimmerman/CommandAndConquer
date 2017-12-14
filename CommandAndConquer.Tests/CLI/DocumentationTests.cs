@@ -92,5 +92,23 @@ namespace CommandAndConquer.Tests.CLI
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);
         }
+
+        [Test]
+        public void AbleToRetriveCommandDocumentationWithAlias()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "enumerable",
+                "Description: This is an example description.",
+                "Parameters:",
+                $"{argPre}values (List of String): This parameter is Required.",
+                $"{argPre}something | {argPre}s (Int32): This parameter is Required."
+            };
+            Processor.ProcessArguments(new[] { "execute", "enumerable", helpString });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+            Assert.IsTrue(temp == expectedString);
+        }
     }
 }

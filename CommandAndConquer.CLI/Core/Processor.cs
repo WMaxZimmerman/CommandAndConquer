@@ -13,7 +13,8 @@ namespace CommandAndConquer.CLI.Core
         {
             if (args.Length == 0)
             {
-                Console.WriteLine($"Please enter a controller.  Use '{Settings.HelpString}' to see available controllers.");
+                //Console.WriteLine($"Please enter a controller.  Use '{Settings.HelpString}' to see available controllers.");
+                ApplicationLoop();
                 return;
             }
 
@@ -44,6 +45,21 @@ namespace CommandAndConquer.CLI.Core
                 }
 
                 controller.ExecuteCommand(arguments.Command, arguments.Arguments);
+            }
+        }
+
+        private static void ApplicationLoop()
+        {
+            var exitString = "exit";
+            Console.Write("> ");
+            var input = Console.ReadLine().Split(' ');
+
+            while (input[0] != exitString)
+            {
+                Processor.ProcessArgs(input);
+                Console.WriteLine();
+                Console.Write("> ");
+                input = Console.ReadLine().Split(' ');
             }
         }
 

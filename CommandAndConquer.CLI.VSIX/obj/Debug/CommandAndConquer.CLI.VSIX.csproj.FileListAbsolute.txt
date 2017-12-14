@@ -7,3 +7,4 @@ C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.dll
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.pdb
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\extension.vsixmanifest
+C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.csprojResolveAssemblyReference.cache
