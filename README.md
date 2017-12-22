@@ -26,7 +26,7 @@ Name - The name of command and the command line argument to be entered to access
 Description - A description of the functionality of the method. This can be output via the help function in a terminal.
 
 # Paramters
-To wire in your paramters you have to do... nothing. Yes, nothing. No more if/select statements to decide a code path. Simiply put the parameters in the method like normal and let CommandAndConquer handle the rest. CommandAndConquer will use the variable name that you set in your code as the input for the terminal as well as provide you type safetly during execution. CommandAndConquer is smart enough to know what types your parameters are and will output all possible documentation when prompted via the help function. This include the name of the parameter, its type, weither it is optional or required (based on if it has a default value), and even its possible options if it is an enum. That is a lot of working and ridiculous wiring that you no longer have to do!
+To wire in your paramters you have to do... nothing. Yes, nothing. No more if/select statements to decide a code path. Simiply put the parameters in the method like normal and let CommandAndConquer handle the rest. CommandAndConquer will use the variable name that you set in your code as the input for the terminal as well as provide you type safetly during execution. CommandAndConquer is smart enough to know what types your parameters are and will output all possible documentation when prompted via the help function. This include the name of the parameter, its type, weither it is optional or required (based on if it has a default value), and even its possible options if it is an enum. That is a lot of working and ridiculous wiring that you no longer have to do!  However, if you do want to add a bit more details to your paramters you can use the "CliParamter" attribute. This attribute allows you to specify an alias and description for a parameter. Currently the alias is required to be passed to the constructor and the description is optional. If specified the description will be output when the help command is used. You are also able to change the "paramDetail" config value to "detailed". If you do, you will also be able to see what value was assigned as a default for optional paramters.
 
 # Usage
 Once you have setup the boiler plate and have at least one controller and method (Done for you if you used the template) you can build your executable and navigate to it in a terminal and start to run your application. To execute your code you will use the pattern:
@@ -40,12 +40,19 @@ Notice the '--' infront of the <parameter>. This is the format that lets Command
 # Error Handling
 You might be thinking, "That all sounds great, but what if it recieves bad input?" CommandAndConquer is setup to handle invalid input gracefully.  It will valid all of the inputs before even attempting to execute your code, and if any of the inputs violate type or arguments it will notify the user and stop any further execution before reaching your code. CommandAndConquer will also gracefully handle errors that might happen in your code (Not that that would happen cause your code is flawless). If an error occurs in your code it will output the error message and the stack trace to the terminal.
 
+# Application Loop
+You can also enable the application loop for you project. To do so you will need to add the "applicationLoopEnabled" key to your appsettings section of your config with a value of "true". After you have done this your application is setup to use the Application Loop. But, what is the Application Loop you may be asking. The Application Loop is where you execute your application with no parameters. This puts you into a loop that keeps you in the context of your application until you pass it the exit string "exit". This will allow you to not have to continue executing new instances of your application, and will allow you to leave off the application part of calls.  This is mostly useful when you will be performing several different command for your application.
+
 # Configuration
 If you don't like the defaults that I setup you can change the 'helpString' and the 'argumentPrefix' in the 'App.config' file. To do this simply add these lines:
 
 ```
 <add key="helpString" value="?" />
 <add key="argumentPrefix" value="--" />
+<add key="paramDetail" value="simple" />
+<add key="applicationLoopEnabled" value="true" />
+<add key="inputIndicator" value=">" />
+<add key="exitString" value="exit" />
 ```
 
 If you don't have an 'appsettings' section of your 'App.config' you can simply add one and then add the lines there. You should keep in mind that if you change these values then some of this documentation may no longer apply as it assumes you are using the defaults.
