@@ -25,6 +25,7 @@ namespace CommandAndConquer.Tests.CLI
         [Test]
         public void AbleToRetriveControllerDocumentation()
         {
+            SetParamDetail("simple");
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
@@ -43,6 +44,7 @@ namespace CommandAndConquer.Tests.CLI
         [Test]
         public void AbleToRetriveCommandDocumentation()
         {
+            SetParamDetail("simple");
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
@@ -51,6 +53,25 @@ namespace CommandAndConquer.Tests.CLI
                 "Parameters:",
                 $"{argPre}required (String): This parameter is Required.",
                 $"{argPre}opt (Int32): This parameter is Optional."
+            };
+            Processor.ProcessArguments(new[] { "document", "example", helpString });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToRetriveCommandDocumentationWithDetailedParams()
+        {
+            SetParamDetail("detailed");
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "example",
+                "Description: This is an example description.",
+                "Parameters:",
+                $"{argPre}required (String): This parameter is Required.",
+                $"{argPre}opt (Int32): This parameter is Optional with a default value of 0."
             };
             Processor.ProcessArguments(new[] { "document", "example", helpString });
             var temp = mockConsole.ToString();
@@ -106,6 +127,25 @@ namespace CommandAndConquer.Tests.CLI
                 $"{argPre}something | {argPre}s (Int32): This parameter is Required."
             };
             Processor.ProcessArguments(new[] { "execute", "enumerable", helpString });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+            Assert.IsTrue(temp == expectedString);
+        }
+
+        [Test]
+        public void AbleToRetriveCommandDocumentationWithAliasAndDescription()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "array",
+                "Description: This is an example description.",
+                "Parameters:",
+                $"{argPre}values (List of String): This parameter is Required.",
+                $"{argPre}something | {argPre}s (Int32): This parameter is Required.",
+                "Description: This parameter does something."
+            };
+            Processor.ProcessArguments(new[] { "execute", "array", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
             Assert.IsTrue(temp == expectedString);

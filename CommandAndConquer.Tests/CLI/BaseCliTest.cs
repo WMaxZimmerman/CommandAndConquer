@@ -22,6 +22,8 @@ namespace CommandAndConquer.Tests.CLI
         {
             consoleMock = new StringWriter(mockConsole);
             Console.SetOut(consoleMock);
+            SetApplicationLoopEnabled(false);
+            SetParamDetail("simple");
         }
 
         protected string ConvertConsoleLinesToString(List<string> lines, bool startingNewLine = false, bool endingNewLine = true)
@@ -30,6 +32,25 @@ namespace CommandAndConquer.Tests.CLI
             if (endingNewLine) consoleString += NewLine;
             if (startingNewLine) consoleString = NewLine + consoleString;
             return consoleString;
+        }
+
+        protected void SetApplicationLoopEnabled(bool value)
+        {
+            UpdateConfigValue("applicationLoopEnabled", value.ToString());
+        }
+
+        protected void SetParamDetail(string detail)
+        {
+            UpdateConfigValue("paramDetail", detail);
+        }
+
+        private static void UpdateConfigValue(string key, string value)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            config.AppSettings.Settings[key].Value = value;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appsettings");
         }
     }
 }

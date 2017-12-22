@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using CommandAndConquer.CLI.Core;
 using NUnit.Framework;
 
@@ -10,12 +11,14 @@ namespace CommandAndConquer.Tests.CLI
         [Test]
         public void AbleToHandleMissingAllAguments()
         {
+            SetApplicationLoopEnabled(false);
+
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
                 $"Please enter a controller.  Use '{helpString}' to see available controllers."
             };
-            Processor.ProcessArguments(new string[] {});
+            Processor.ProcessArguments(new string[] { });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);

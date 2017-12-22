@@ -3,8 +3,8 @@ C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\bin\Debug\icon.png
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\bin\Debug\CommandAndConquer.CLI.Template.zip
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\bin\Debug\CommandAndConquer.CLI.VSIX.vsix
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\bin\Debug\extension.vsixmanifest
+C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.csprojResolveAssemblyReference.cache
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.csproj.CoreCompileInputs.cache
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.dll
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.pdb
 C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\extension.vsixmanifest
-C:\git\CommandAndConquer\CommandAndConquer.CLI.VSIX\obj\Debug\CommandAndConquer.CLI.VSIX.csprojResolveAssemblyReference.cache

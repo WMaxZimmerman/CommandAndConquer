@@ -49,7 +49,7 @@ namespace CommandAndConquer.CLI.Models
         {
             var methodParams = new MethodParameters();
 
-            foreach (var argument in args.Where(a => Info.GetParameters().All(p => p.Name != a.Command && p.GetCustomAttribute<CliParameter>()?.Alias != a.Command)))
+            foreach (var argument in args.Where(a => Info.GetParameters().All(p => p.Name != a.Command && p.GetCustomAttribute<CliParameter>()?.Alias.ToString() != a.Command)))
             {
                 methodParams.Errors.Add($"The parameter '{argument.Command}' is not a valid parameter.");
             }
@@ -64,7 +64,7 @@ namespace CommandAndConquer.CLI.Models
                         var paramAttribute = parameter.GetCustomAttribute<CliParameter>();
                         if (paramAttribute != null)
                         {
-                            if (paramAttribute.Alias.ToLower() != argument.Command.ToLower()) continue;
+                            if (paramAttribute.Alias.ToString().ToLower() != argument.Command.ToLower()) continue;
                         }
                         else
                         {
@@ -187,6 +187,7 @@ namespace CommandAndConquer.CLI.Models
         private void OutputParameterDocumentation(ParameterInfo cp)
         {
             var priorityString = cp.HasDefaultValue ? "Optional" : "Required";
+            if (cp.HasDefaultValue && Settings.ParamDetail == "detailed") priorityString += $" with a default value of {cp.DefaultValue}";
             var type = cp.ParameterType;
             var isEnumerable = IsEnumerable(type);
             if (isEnumerable)
@@ -205,9 +206,11 @@ namespace CommandAndConquer.CLI.Models
 
             var typeString = $"{(isEnumerable ? "List of " : "")}{type.Name}";
             var aliasString = "";
+            var descripitionString = "";
             if (cp.GetCustomAttribute<CliParameter>() != null)
             {
                 aliasString = $" | {Settings.ArgumentPrefix}{cp.GetCustomAttribute<CliParameter>().Alias}";
+                if (cp.GetCustomAttribute<CliParameter>().Description != null) descripitionString = $"Description: {cp.GetCustomAttribute<CliParameter>().Description}";
             }
             var docString = $"{Settings.ArgumentPrefix}{cp.Name}{aliasString} ({typeString}): This parameter is {priorityString}";
 
@@ -222,6 +225,7 @@ namespace CommandAndConquer.CLI.Models
             }
 
             Console.WriteLine(docString);
+            if (descripitionString != "") Console.WriteLine(descripitionString);
         }
 
         private bool IsEnumerable(Type type)
