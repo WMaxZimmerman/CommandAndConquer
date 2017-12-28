@@ -35,5 +35,15 @@ namespace CommandAndConquer.Tests.CommandLineTests
 
             Assert.AreEqual(actualArgArray, expectedArgArray);
         }
+
+        [Test]
+        public void GetCommandLineArgsAbleToHandleSingleArgument()
+        {
+            var inputString = "?";
+            var actualArgArray = CommandLine.GetCommandLineArgs(inputString);
+            var expectedArgArray = new[] { "?" };
+
+            Assert.AreEqual(actualArgArray, expectedArgArray);
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.CLI", "CommandAndConquer.CLI\CommandAndConquer.CLI.csproj", "{5D0C7473-D01F-4824-A75B-49C7FE90F4F1}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{4E50E530-8317-41F4-B709-578B25F28316}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.CLI.VSIX", "CommandAndConquer.CLI.VSIX\CommandAndConquer.CLI.VSIX.csproj", "{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.TestCLI", "CommandAndConquer.TestCLI\CommandAndConquer.TestCLI.csproj", "{865A53AF-93C1-42A8-82EB-CAF665C73A62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

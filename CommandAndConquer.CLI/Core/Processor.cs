@@ -15,7 +15,7 @@ namespace CommandAndConquer.CLI.Core
             {
                 if (Settings.ApplicationLoopEnabled)
                 {
-                    ApplicationLoop();
+                    ApplicationLoop(Assembly.GetCallingAssembly());
                 }
                 else
                 {
@@ -24,7 +24,26 @@ namespace CommandAndConquer.CLI.Core
                 return;
             }
 
-            var controllers = GetControllers(Assembly.GetCallingAssembly());
+            ProcessArguments(args, Assembly.GetCallingAssembly());
+        }
+
+        private static void ApplicationLoop(Assembly ProjectAssembly)
+        {
+            Console.Write(Settings.InputIndicator + " ");
+            var input = CommandLine.GetCommandLineArgs(Console.ReadLine());
+
+            while (input.Length == 0 || input[0] != Settings.ExitString)
+            {
+                if (input.Length > 0) Processor.ProcessArguments(input, ProjectAssembly);
+                Console.WriteLine();
+                Console.Write(Settings.InputIndicator + " ");
+                input = CommandLine.GetCommandLineArgs(Console.ReadLine());
+            }
+        }
+
+        private static void ProcessArguments(string[] args, Assembly ProjectAssembly)
+        {
+            var controllers = GetControllers(ProjectAssembly);
             var arguments = ProcessArgs(args);
 
             if (arguments.IsHelpCall)
@@ -51,20 +70,6 @@ namespace CommandAndConquer.CLI.Core
                 }
 
                 controller.ExecuteCommand(arguments.Command, arguments.Arguments);
-            }
-        }
-
-        private static void ApplicationLoop()
-        {
-            Console.Write(Settings.InputIndicator + " ");
-            var input = CommandLine.GetCommandLineArgs(Console.ReadLine());
-
-            while (input.Length == 0 || input[0] != Settings.ExitString)
-            {
-                if (input.Length > 0) Processor.ProcessArguments(input);
-                Console.WriteLine();
-                Console.Write(Settings.InputIndicator + " ");
-                input = CommandLine.GetCommandLineArgs(Console.ReadLine());
             }
         }
 
