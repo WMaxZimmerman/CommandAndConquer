@@ -107,6 +107,12 @@ namespace CommandAndConquer.CLI.Models
                             methodParams.Parameters.Add(list);
                         }
                     }
+                    else if (type.Name == "Boolean")
+                    {
+                        if (argument.Values.Count <= 0) argument.Values.Add("true");
+                        dynamic val = GetParamValue(argument.Values[0], parameter.ParameterType);
+                        methodParams.Parameters.Add(val);
+                    }
                     else
                     {
                         dynamic val = GetParamValue(argument.Values[0], parameter.ParameterType);

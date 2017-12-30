@@ -149,5 +149,19 @@ namespace CommandAndConquer.Tests.CLI
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
         }
+
+        [Test]
+        public void AbleToCallCommandWithBooleanParameterWithNoValues()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "Here is some output."
+            };
+            Processor.ProcessArguments(new[] { "execute", "bool", $"{argPre}withOutput" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.IsTrue(temp == expectedString);
+        }
     }
 }

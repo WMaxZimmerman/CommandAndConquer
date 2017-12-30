@@ -27,14 +27,14 @@ namespace CommandAndConquer.CLI.Core
             ProcessArguments(args, Assembly.GetCallingAssembly());
         }
 
-        private static void ApplicationLoop(Assembly ProjectAssembly)
+        private static void ApplicationLoop(Assembly projectAssembly)
         {
             Console.Write(Settings.InputIndicator + " ");
             var input = CommandLine.GetCommandLineArgs(Console.ReadLine());
 
             while (input.Length == 0 || input[0] != Settings.ExitString)
             {
-                if (input.Length > 0) Processor.ProcessArguments(input, ProjectAssembly);
+                if (input.Length > 0) Processor.ProcessArguments(input, projectAssembly);
                 Console.WriteLine();
                 Console.Write(Settings.InputIndicator + " ");
                 input = CommandLine.GetCommandLineArgs(Console.ReadLine());

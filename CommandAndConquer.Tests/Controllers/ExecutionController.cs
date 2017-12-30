@@ -49,5 +49,14 @@ namespace CommandAndConquer.Tests.Controllers
             }
             Console.WriteLine(something);
         }
+
+        [CliCommand("bool", "This is an example description.")]
+        public static void TestMethod4(bool withOutput)
+        {
+            if (withOutput)
+            {
+                Console.WriteLine("Here is some output.");
+            }
+        }
     }
 }

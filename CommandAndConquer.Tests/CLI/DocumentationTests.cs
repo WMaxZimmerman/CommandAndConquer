@@ -60,24 +60,24 @@ namespace CommandAndConquer.Tests.CLI
             Assert.IsTrue(temp == expectedString);
         }
 
-        [Test]
-        public void AbleToRetriveCommandDocumentationWithDetailedParams()
-        {
-            SetParamDetail("detailed");
-            mockConsole.Clear();
-            var consoleLines = new List<string>
-            {
-                "example",
-                "Description: This is an example description.",
-                "Parameters:",
-                $"{argPre}required (String): This parameter is Required.",
-                $"{argPre}opt (Int32): This parameter is Optional with a default value of 0."
-            };
-            Processor.ProcessArguments(new[] { "document", "example", helpString });
-            var temp = mockConsole.ToString();
-            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
-        }
+        //[Test]
+        //public void AbleToRetriveCommandDocumentationWithDetailedParams()
+        //{
+        //    SetParamDetail("detailed");
+        //    mockConsole.Clear();
+        //    var consoleLines = new List<string>
+        //    {
+        //        "example",
+        //        "Description: This is an example description.",
+        //        "Parameters:",
+        //        $"{argPre}required (String): This parameter is Required.",
+        //        $"{argPre}opt (Int32): This parameter is Optional with a default value of 0."
+        //    };
+        //    Processor.ProcessArguments(new[] { "document", "example", helpString });
+        //    var temp = mockConsole.ToString();
+        //    var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+        //    Assert.IsTrue(temp == expectedString);
+        //}
 
         [Test]
         public void AbleToRetriveCommandDocumentationWithEnum()
