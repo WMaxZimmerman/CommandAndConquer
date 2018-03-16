@@ -24,7 +24,11 @@ namespace CommandAndConquer.CLI.Core
                 return;
             }
 
-            if (ProcessArguments(args, Assembly.GetCallingAssembly()) == false) Environment.Exit(1);
+            var wasSuccess = ProcessArguments(args, Assembly.GetCallingAssembly());
+            if (wasSuccess == false)
+            {
+                Environment.Exit(1);
+            }
         }
 
         private static void ApplicationLoop(Assembly projectAssembly)
@@ -71,8 +75,8 @@ namespace CommandAndConquer.CLI.Core
                     return false;
                 }
 
-                controller.ExecuteCommand(arguments.Command, arguments.Arguments);
-                return true;
+                var invokeSuccessful = controller.ExecuteCommand(arguments.Command, arguments.Arguments);
+                return invokeSuccessful;
             }
         }
 
