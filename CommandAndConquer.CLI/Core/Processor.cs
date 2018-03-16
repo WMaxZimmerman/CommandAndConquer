@@ -20,6 +20,7 @@ namespace CommandAndConquer.CLI.Core
                 else
                 {
                     Console.WriteLine($"Please enter a controller.  Use '{Settings.HelpString}' to see available controllers.");
+                    Environment.ExitCode = 1;
                 }
                 return;
             }
@@ -27,7 +28,7 @@ namespace CommandAndConquer.CLI.Core
             var wasSuccess = ProcessArguments(args, Assembly.GetCallingAssembly());
             if (wasSuccess == false)
             {
-                Environment.Exit(1);
+                Environment.ExitCode = 1;
             }
         }
 

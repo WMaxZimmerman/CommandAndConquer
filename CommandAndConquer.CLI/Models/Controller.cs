@@ -30,9 +30,8 @@ namespace CommandAndConquer.CLI.Models
                 Console.WriteLine($"'{commandName}' is not a valid command.  Use '{Settings.HelpString}' to see available commands.");
                 return false;
             }
-
-            command.Invoke(args);
-            return true;
+            
+            return command.Invoke(args);
         }
 
         public void OutputDocumentation()
