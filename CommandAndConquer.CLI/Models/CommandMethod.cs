@@ -20,28 +20,31 @@ namespace CommandAndConquer.CLI.Models
             Name = GetCommandName();
         }
 
-        public void Invoke(List<CommandLineArgument> args)
+        public bool Invoke(List<CommandLineArgument> args)
         {
             try
             {
                 var paramList = GetParams(args);
-                if (paramList == null) return;
+                if (paramList == null) return false;
 
                 Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+                return true;
             }
             catch (TargetInvocationException e)
             {
                 var inner = e.InnerException;
                 Console.WriteLine("An error occurred while executing the command.");
-                if (inner == null) return;
+                if (inner == null) return false;
                 Console.WriteLine($"Message: {inner.Message}");
                 Console.WriteLine($"Stack Trace: {inner.StackTrace.Trim()}");
+                return false;
             }
             catch (Exception e)
             {
                 Console.WriteLine("An error occured while attempting to execute the command.");
                 Console.WriteLine("This is most likely due to invalid arguments.");
                 Console.WriteLine($"Please verify the command usage with '{Settings.HelpString}' and try again.");
+                return false;
             }
         }
 

@@ -24,7 +24,7 @@ namespace CommandAndConquer.CLI.Core
                 return;
             }
 
-            ProcessArguments(args, Assembly.GetCallingAssembly());
+            if (ProcessArguments(args, Assembly.GetCallingAssembly()) == false) Environment.Exit(1);
         }
 
         private static void ApplicationLoop(Assembly projectAssembly)
@@ -41,9 +41,10 @@ namespace CommandAndConquer.CLI.Core
             }
         }
 
-        private static void ProcessArguments(string[] args, Assembly ProjectAssembly)
+        private static bool ProcessArguments(string[] args, Assembly ProjectAssembly)
         {
             var controllers = GetControllers(ProjectAssembly);
+            
             var arguments = ProcessArgs(args);
 
             if (arguments.IsHelpCall)
@@ -55,10 +56,11 @@ namespace CommandAndConquer.CLI.Core
                     {
                         c.OutputDocumentation();
                     }
-                    return;
+                    return true;
                 }
 
                 controller.DocumentCommand(arguments.Command);
+                return true;
             }
             else
             {
@@ -66,10 +68,11 @@ namespace CommandAndConquer.CLI.Core
                 if (controller == null)
                 {
                     Console.WriteLine($"'{args[0]}' is not a valid controller.  Use '{Settings.HelpString}' to see available controllers.");
-                    return;
+                    return false;
                 }
 
                 controller.ExecuteCommand(arguments.Command, arguments.Arguments);
+                return true;
             }
         }
 
