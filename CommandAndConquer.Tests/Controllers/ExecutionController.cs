@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CommandAndConquer.CLI.Attributes;
 using CommandAndConquer.Tests.Models;
 
@@ -57,6 +58,38 @@ namespace CommandAndConquer.Tests.Controllers
             {
                 Console.WriteLine("Here is some output.");
             }
+        }
+
+        [CliCommand("longRunning", "performs long running async tasks")]
+        public static void LongRunningTests(int firstNum, int secondNum)
+        {
+            PerformAsyncStuff(firstNum, secondNum).Wait();
+        }
+
+        private static async Task<bool> PerformAsyncStuff(int firstNum, int secondNum)
+        {
+            await LoopingSomeLongRunningThing(firstNum);
+
+            await LoopingSomeLongRunningThing(secondNum);
+
+            return true;
+        }
+
+        private static async Task LoopingSomeLongRunningThing(float times)
+        {
+            var tasks = new List<Task>();
+            for (var i = 0; i < times; i++)
+            {
+                var num = i;
+                tasks.Add(Task.Run(() => SomeLongRunningThing(num)));
+            }
+            await Task.WhenAll(tasks);
+        }
+
+        private static void SomeLongRunningThing(int times)
+        {
+            System.Threading.Thread.Sleep(500);
+            Console.WriteLine($"I am on iteration {times}");
         }
     }
 }

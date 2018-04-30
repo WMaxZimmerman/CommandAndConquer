@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using CommandAndConquer.CLI.Core;
 using NUnit.Framework;
 
@@ -90,7 +89,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "An error occurred while executing the command.",
                 "Message: I blew up yer thingy.",
-                @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 20"
+                @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 21"
             };
             Processor.ProcessArguments(new[] { "execute", "exception", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();

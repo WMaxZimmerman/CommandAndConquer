@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
@@ -24,7 +22,7 @@ namespace CommandAndConquer.Tests.Integration
         {
             string strCmdText;
             strCmdText = $"/C \"{_directory}CommandAndConquer.TestCLI.exe\" meth add --firstNum 1 --secondNum 2";
-            var proc = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
             Assert.AreEqual(1, proc.ExitCode);
@@ -35,7 +33,7 @@ namespace CommandAndConquer.Tests.Integration
         {
             string strCmdText;
             strCmdText = $"/C \"{_directory}CommandAndConquer.TestCLI.exe\" math";
-            var proc = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
             Assert.AreEqual(1, proc.ExitCode);
@@ -46,7 +44,7 @@ namespace CommandAndConquer.Tests.Integration
         {
             string strCmdText;
             strCmdText = $"/C \"{_directory}CommandAndConquer.TestCLI.exe\" math add --firstNom 1 --secondNum 2";
-            var proc = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
             Assert.AreEqual(1, proc.ExitCode);
@@ -57,7 +55,7 @@ namespace CommandAndConquer.Tests.Integration
         {
             string strCmdText;
             strCmdText = $"/C \"{_directory}CommandAndConquer.TestCLI.exe\" math add --firstNum 1";
-            var proc = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
             Assert.AreEqual(1, proc.ExitCode);
