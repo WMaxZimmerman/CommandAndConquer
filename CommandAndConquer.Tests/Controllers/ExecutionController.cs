@@ -7,10 +7,16 @@ using CommandAndConquer.Tests.Models;
 namespace CommandAndConquer.Tests.Controllers
 {
     [CliController("execute", "This is a test description.")]
-    public static class ExecutionController
+    public class ExecutionController
     {
         [CliCommand("example", "This is an example description.")]
         public static void TestMethod(SampleEnum sample)
+        {
+            Console.WriteLine($"{Enum.GetName(typeof(SampleEnum), sample)}");
+        }
+
+        [CliCommand("nonstatic", "This is an example description.")]
+        public void NonStaticTestMethod(SampleEnum sample)
         {
             Console.WriteLine($"{Enum.GetName(typeof(SampleEnum), sample)}");
         }

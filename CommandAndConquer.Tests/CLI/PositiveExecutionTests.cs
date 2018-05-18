@@ -163,5 +163,19 @@ namespace CommandAndConquer.Tests.CLI
             var expectedString = ConvertConsoleLinesToString(consoleLines);
             Assert.IsTrue(temp == expectedString);
         }
+
+        [Test]
+        public void AbleToCallNonStaticComamndWithEnum()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "EnumOne"
+            };
+            Processor.ProcessArguments(new[] { "execute", "nonstatic", $"{argPre}sample", "EnumOne" });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines);
+            Assert.AreEqual(expectedString, temp);
+        }
     }
 }

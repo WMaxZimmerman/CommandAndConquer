@@ -89,7 +89,7 @@ namespace CommandAndConquer.Tests.CLI
             {
                 "An error occurred while executing the command.",
                 "Message: I blew up yer thingy.",
-                @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 21"
+                @"Stack Trace: at CommandAndConquer.Tests.Controllers.ExecutionController.ThrowExceptionMethod(SampleEnum sample) in C:\git\CommandAndConquer\CommandAndConquer.Tests\Controllers\ExecutionController.cs:line 27"
             };
             Processor.ProcessArguments(new[] { "execute", "exception", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();

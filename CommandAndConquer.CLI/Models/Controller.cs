@@ -20,6 +20,10 @@ namespace CommandAndConquer.CLI.Models
             Methods = ClassType.GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliCommand))
                 .Select(c => new CommandMethod(c)).ToList();
+
+            Methods.AddRange(ClassType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliCommand))
+                .Select(c => new CommandMethod(c)).ToList());
         }
 
         public bool ExecuteCommand(string commandName, List<CommandLineArgument> args)

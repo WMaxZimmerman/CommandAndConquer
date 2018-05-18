@@ -27,7 +27,17 @@ namespace CommandAndConquer.CLI.Models
                 var paramList = GetParams(args);
                 if (paramList == null) return false;
 
-                Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+                if (Info.IsStatic)
+                {
+                    Info.Invoke(null, BindingFlags.Static, null, paramList, null);
+                }
+                else
+                {
+                    //Execute as if not static
+                    var target = Activator.CreateInstance(Info.DeclaringType);
+                    Info.Invoke(target, BindingFlags.Instance, null, paramList, null);
+                }
+
                 return true;
             }
             catch (TargetInvocationException e)
