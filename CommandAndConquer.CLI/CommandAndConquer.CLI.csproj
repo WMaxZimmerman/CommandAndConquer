@@ -53,7 +53,9 @@
     <Compile Include="Models\CommandLineArgument.cs" />
     <Compile Include="Models\CommandMethod.cs" />
     <Compile Include="Models\Controller.cs" />
+    <Compile Include="Models\ControllerVm.cs" />
     <Compile Include="Models\MethodParameters.cs" />
+    <Compile Include="Models\CommandMethodVm.cs" />
     <Compile Include="Models\ProcessedArguments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

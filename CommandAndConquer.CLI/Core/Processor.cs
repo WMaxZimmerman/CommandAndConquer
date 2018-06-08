@@ -9,6 +9,15 @@ namespace CommandAndConquer.CLI.Core
 {
     public static class Processor
     {
+        public static IEnumerable<ControllerVm> GetAllControllers(Assembly callingAssembly)
+        {
+            var controllerList = callingAssembly.GetTypes()
+                .Where(t => Attribute.GetCustomAttributes(t).Any(a => a is CliController))
+                .Select(t => new ControllerVm(t));
+
+            return controllerList;
+        }
+
         public static void ProcessArguments(string[] args)
         {
             if (args.Length == 0)
@@ -46,7 +55,7 @@ namespace CommandAndConquer.CLI.Core
             }
         }
 
-        private static bool ProcessArguments(string[] args, Assembly ProjectAssembly)
+        private static bool ProcessArguments(IReadOnlyList<string> args, Assembly ProjectAssembly)
         {
             var controllers = GetControllers(ProjectAssembly);
             
@@ -81,36 +90,36 @@ namespace CommandAndConquer.CLI.Core
             }
         }
 
-        private static List<Controller> GetControllers(Assembly callingAssembly)
+        private static IEnumerable<Controller> GetControllers(Assembly callingAssembly)
         {
             var controllerList = callingAssembly.GetTypes()
                 .Where(t => Attribute.GetCustomAttributes(t).Any(a => a is CliController))
                 .Select(t => new Controller(t));
             
-            return controllerList.ToList();
+            return controllerList;
         }
 
-        private static ProcessedArguments ProcessArgs(string[] args)
+        private static ProcessedArguments ProcessArgs(IReadOnlyList<string> args)
         {;
             var processedArguments = new ProcessedArguments();
 
-            if (args.Length == 0) return processedArguments;
+            if (args.Count == 0) return processedArguments;
 
-            processedArguments.IsHelpCall = args[args.Length - 1] == Settings.HelpString;
+            processedArguments.IsHelpCall = args[args.Count - 1] == Settings.HelpString;
             processedArguments.Controller = TryGetArg(args, 0);
             processedArguments.Command = TryGetArg(args, 1);
 
-            if (args.Length > 2 && !processedArguments.IsHelpCall)
+            if (args.Count > 2 && !processedArguments.IsHelpCall)
             {
                 var argsList = args.ToList();
                 argsList.RemoveRange(0, 2);
-                processedArguments.Arguments = SetArguments(argsList);
+                processedArguments.Arguments = SetArguments(argsList).ToList();
             }
 
             return processedArguments;
         }
 
-        private static string TryGetArg(string[] args, int index)
+        private static string TryGetArg(IReadOnlyList<string> args, int index)
         {
             try
             {
@@ -123,7 +132,7 @@ namespace CommandAndConquer.CLI.Core
             }
         }
         
-        private static List<CommandLineArgument> SetArguments(IEnumerable<string> args)
+        private static IEnumerable<CommandLineArgument> SetArguments(IEnumerable<string> args)
         {
             var arguments = new List<CommandLineArgument>();
             CommandLineArgument tempArg = null;
