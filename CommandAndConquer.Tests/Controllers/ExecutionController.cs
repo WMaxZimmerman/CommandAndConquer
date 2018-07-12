@@ -66,6 +66,12 @@ namespace CommandAndConquer.Tests.Controllers
             }
         }
 
+        [CliCommand("without-alias", "This is an example description.")]
+        public static void TestMethod5([CliParameter("without-alias")]bool something)
+        {
+            Console.WriteLine(something);
+        }
+
         [CliCommand("longRunning", "performs long running async tasks")]
         public static void LongRunningTests(int firstNum, int secondNum)
         {
