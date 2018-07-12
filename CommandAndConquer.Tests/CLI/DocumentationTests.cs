@@ -19,7 +19,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, false);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "document", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "document", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         //[Test]
@@ -76,7 +76,7 @@ namespace CommandAndConquer.Tests.CLI
         //    Processor.ProcessArguments(new[] { "document", "example", helpString });
         //    var temp = mockConsole.ToString();
         //    var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-        //    Assert.IsTrue(temp == expectedString);
+        //    Assert.AreEqual(expectedString, temp);
         //}
 
         [Test]
@@ -93,7 +93,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "nonstatic", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "list", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "enumerable", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "array", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
     }
 }

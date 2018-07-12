@@ -20,7 +20,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new string[] { });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "EnumOne", $"{argPre}invalidParam", "bad" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
 
         [Test]
@@ -78,9 +78,9 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "Enum" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
-        
+
         [Test]
         public void AbleToHandleCallToCommandThatThrowsException()
         {
@@ -94,7 +94,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "exception", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.IsTrue(temp == expectedString);
+            Assert.AreEqual(expectedString, temp);
         }
     }
 }

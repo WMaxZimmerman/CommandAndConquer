@@ -13,7 +13,7 @@ namespace CommandAndConquer.Tests.CommandLineTests
             var actualArgArray = CommandLine.GetCommandLineArgs(inputString);
             var expectedArgArray = new []{ "controller", "command", "--parameter", "value", "--paramaterTwo", "-2" };
 
-            Assert.AreEqual(actualArgArray, expectedArgArray);
+            Assert.AreEqual(expectedArgArray, actualArgArray);
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace CommandAndConquer.Tests.CommandLineTests
             var actualArgArray = CommandLine.GetCommandLineArgs(inputString);
             var expectedArgArray = new[] { "controller", "command", "--parameter", "value", "--paramaterTwo", "-2" };
 
-            Assert.AreEqual(actualArgArray, expectedArgArray);
+            Assert.AreEqual(expectedArgArray, actualArgArray);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace CommandAndConquer.Tests.CommandLineTests
             var actualArgArray = CommandLine.GetCommandLineArgs(inputString);
             var expectedArgArray = new[] { "controller", "command", "--parameter", "value", "--paramaterTwo", "-2" };
 
-            Assert.AreEqual(actualArgArray, expectedArgArray);
+            Assert.AreEqual(expectedArgArray, actualArgArray);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CommandAndConquer.Tests.CommandLineTests
             var actualArgArray = CommandLine.GetCommandLineArgs(inputString);
             var expectedArgArray = new[] { "?" };
 
-            Assert.AreEqual(actualArgArray, expectedArgArray);
+            Assert.AreEqual(expectedArgArray, actualArgArray);
         }
     }
 }
