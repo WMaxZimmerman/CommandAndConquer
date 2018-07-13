@@ -18,8 +18,10 @@ namespace CommandAndConquer.CLI.Core
             return controllerList;
         }
 
-        public static void ProcessArguments(string[] args)
+        public static void ProcessArguments(string[] args, bool showHelpWithNoArguments = false)
         {
+            if(args.Length == 0 && showHelpWithNoArguments) { args = new[] {Settings.HelpString}; }
+
             if (args.Length == 0)
             {
                 if (Settings.ApplicationLoopEnabled)
@@ -58,7 +60,7 @@ namespace CommandAndConquer.CLI.Core
         private static bool ProcessArguments(IReadOnlyList<string> args, Assembly ProjectAssembly)
         {
             var controllers = GetControllers(ProjectAssembly);
-            
+
             var arguments = ProcessArgs(args);
 
             if (arguments.IsHelpCall)
@@ -95,7 +97,7 @@ namespace CommandAndConquer.CLI.Core
             var controllerList = callingAssembly.GetTypes()
                 .Where(t => Attribute.GetCustomAttributes(t).Any(a => a is CliController))
                 .Select(t => new Controller(t));
-            
+
             return controllerList;
         }
 
@@ -131,7 +133,7 @@ namespace CommandAndConquer.CLI.Core
                 return null;
             }
         }
-        
+
         private static IEnumerable<CommandLineArgument> SetArguments(IEnumerable<string> args)
         {
             var arguments = new List<CommandLineArgument>();
