@@ -58,7 +58,7 @@ namespace CommandAndConquer.CLI.Core
         private static bool ProcessArguments(IReadOnlyList<string> args, Assembly ProjectAssembly)
         {
             var controllers = GetControllers(ProjectAssembly);
-            
+
             var arguments = ProcessArgs(args);
 
             if (arguments.IsHelpCall)
@@ -95,13 +95,14 @@ namespace CommandAndConquer.CLI.Core
             var controllerList = callingAssembly.GetTypes()
                 .Where(t => Attribute.GetCustomAttributes(t).Any(a => a is CliController))
                 .Select(t => new Controller(t));
-            
+
             return controllerList;
         }
 
         private static ProcessedArguments ProcessArgs(IReadOnlyList<string> args)
         {;
             var processedArguments = new ProcessedArguments();
+            var argsStart = 2;
 
             if (args.Count == 0) return processedArguments;
 
@@ -109,10 +110,16 @@ namespace CommandAndConquer.CLI.Core
             processedArguments.Controller = TryGetArg(args, 0);
             processedArguments.Command = TryGetArg(args, 1);
 
-            if (args.Count > 2 && !processedArguments.IsHelpCall)
+            if(processedArguments.Command.StartsWith(Settings.ArgumentPrefix))
+            {
+                argsStart = 1;
+                processedArguments.Command = null;
+            }
+
+            if (args.Count > argsStart && !processedArguments.IsHelpCall)
             {
                 var argsList = args.ToList();
-                argsList.RemoveRange(0, 2);
+                argsList.RemoveRange(0, argsStart);
                 processedArguments.Arguments = SetArguments(argsList).ToList();
             }
 
@@ -131,7 +138,7 @@ namespace CommandAndConquer.CLI.Core
                 return null;
             }
         }
-        
+
         private static IEnumerable<CommandLineArgument> SetArguments(IEnumerable<string> args)
         {
             var arguments = new List<CommandLineArgument>();

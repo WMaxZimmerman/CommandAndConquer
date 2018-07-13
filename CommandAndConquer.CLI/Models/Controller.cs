@@ -12,6 +12,7 @@ namespace CommandAndConquer.CLI.Models
         public string Name { get; set; }
         public Type ClassType { get; set; }
         public List<CommandMethod> Methods { get; set; }
+        public CommandMethod DefaultMethod { get; set; }
 
         public Controller(Type type)
         {
@@ -24,6 +25,12 @@ namespace CommandAndConquer.CLI.Models
             Methods.AddRange(ClassType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
                 .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliCommand))
                 .Select(c => new CommandMethod(c)).ToList());
+
+            DefaultMethod = ClassType.GetMethods(BindingFlags.Public | BindingFlags.Static)
+                                      .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliDefaultCommand))
+                                      .Select(c => new CommandMethod(c)).FirstOrDefault();
+
+            Methods.Add(DefaultMethod);
         }
 
         public bool ExecuteCommand(string commandName, List<CommandLineArgument> args)
@@ -31,10 +38,12 @@ namespace CommandAndConquer.CLI.Models
             var command = Methods.FirstOrDefault(c => c.Name == commandName);
             if (command == null)
             {
+                if(DefaultMethod != null) return DefaultMethod.Invoke(args);
+
                 Console.WriteLine($"'{commandName}' is not a valid command.  Use '{Settings.HelpString}' to see available commands.");
                 return false;
             }
-            
+
             return command.Invoke(args);
         }
 
