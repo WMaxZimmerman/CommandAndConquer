@@ -34,7 +34,7 @@ namespace CommandAndConquer.CLI.Models
                 Console.WriteLine($"'{commandName}' is not a valid command.  Use '{Settings.HelpString}' to see available commands.");
                 return false;
             }
-            
+
             return command.Invoke(args);
         }
 
@@ -46,7 +46,7 @@ namespace CommandAndConquer.CLI.Models
                 if (!(attr is CliController)) continue;
                 var a = (CliController)attr;
 
-                Console.WriteLine($"{a.Name} - {a.Description}");
+                Console.WriteLine($"{a.Name}{Settings.ControllerSeparator}{a.Description}");
             }
         }
 

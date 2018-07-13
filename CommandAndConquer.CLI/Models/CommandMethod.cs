@@ -152,15 +152,20 @@ namespace CommandAndConquer.CLI.Models
         public void OutputDocumentation()
         {
             var attrs = Attribute.GetCustomAttributes(Info);
-            
+
             foreach (var attr in attrs)
             {
                 if (!(attr is CliCommand)) continue;
                 var a = (CliCommand)attr;
-            
+
                 Console.WriteLine();
-                Console.WriteLine($"{a.Name}");
-                Console.WriteLine($"Description: {a.Description}");
+                if(Settings.UseShortDescription)
+                    Console.WriteLine($"{a.Name}{Settings.ControllerSeparator}{a.Description}");
+                else
+                {
+                    Console.WriteLine($"{a.Name}");
+                    Console.WriteLine($"Description: {a.Description}");
+                }
                 var commandParams = Info.GetParameters();
                 if (commandParams.Length > 0)
                 {
@@ -205,6 +210,16 @@ namespace CommandAndConquer.CLI.Models
 
         private void OutputParameterDocumentation(ParameterInfo cp)
         {
+            string aliasString = null;
+            if(Settings.UseShortDescription)
+            {
+                if(cp.GetCustomAttribute<CliParameter>().Alias != default(char))
+                    aliasString = $"{Settings.ArgumentPrefix}{cp.GetCustomAttribute<CliParameter>().Alias}, ";
+                var defaultString = cp.HasDefaultValue ? $"(Default: {cp.DefaultValue}) " : null;
+                Console.WriteLine($"{Settings.ParameterIndentation}{aliasString}{Settings.ArgumentPrefix}{cp.Name}{Settings.ParameterSeparator}{defaultString}{cp.GetCustomAttribute<CliParameter>().Description}");
+                return;
+            }
+
             var priorityString = cp.HasDefaultValue ? "Optional" : "Required";
             if (cp.HasDefaultValue && Settings.ParamDetail == "detailed") priorityString += $" with a default value of {cp.DefaultValue}";
             var type = cp.ParameterType;
@@ -224,14 +239,14 @@ namespace CommandAndConquer.CLI.Models
             type = Nullable.GetUnderlyingType(type) ?? type;
 
             var typeString = $"{(isEnumerable ? "List of " : "")}{type.Name}";
-            var aliasString = "";
+            aliasString = "";
             var descripitionString = "";
             if (cp.GetCustomAttribute<CliParameter>() != null)
             {
                 aliasString = $" | {Settings.ArgumentPrefix}{cp.GetCustomAttribute<CliParameter>().Alias}";
-                if (cp.GetCustomAttribute<CliParameter>().Description != null) descripitionString = $"Description: {cp.GetCustomAttribute<CliParameter>().Description}";
+                if (cp.GetCustomAttribute<CliParameter>().Description != null) descripitionString = $"{Settings.ParameterIndentation}Description: {cp.GetCustomAttribute<CliParameter>().Description}";
             }
-            var docString = $"{Settings.ArgumentPrefix}{cp.Name}{aliasString} ({typeString}): This parameter is {priorityString}";
+            var docString = $"{Settings.ParameterIndentation}{Settings.ArgumentPrefix}{cp.Name}{aliasString} ({typeString}): This parameter is {priorityString}";
 
             if (type.IsEnum)
             {
