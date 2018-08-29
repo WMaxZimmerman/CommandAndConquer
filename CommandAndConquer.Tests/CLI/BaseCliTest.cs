@@ -13,7 +13,6 @@ namespace CommandAndConquer.Tests.CLI
     {
         protected StringWriter consoleMock;
         protected StringBuilder mockConsole = new StringBuilder();
-        protected const string NewLine = "\r\n";
         protected string helpString = Settings.HelpString;
         protected string argPre = Settings.ArgumentPrefix;
 
@@ -28,9 +27,9 @@ namespace CommandAndConquer.Tests.CLI
 
         protected string ConvertConsoleLinesToString(List<string> lines, bool startingNewLine = false, bool endingNewLine = true)
         {
-            var consoleString = string.Join(NewLine, lines);
-            if (endingNewLine) consoleString += NewLine;
-            if (startingNewLine) consoleString = NewLine + consoleString;
+            var consoleString = string.Join(Environment.NewLine, lines);
+            if (endingNewLine) consoleString += Environment.NewLine;
+            if (startingNewLine) consoleString = Environment.NewLine + consoleString;
             return consoleString;
         }
 
