@@ -150,6 +150,24 @@ namespace CommandAndConquer.Tests.CLI
         }
 
         [Test]
+        public void AbleToRetriveCommandDocumentationWithoutAlias()
+        {
+            mockConsole.Clear();
+            var consoleLines = new List<string>
+            {
+                "without-alias",
+                "Description: This is an example description.",
+                "Parameters:",
+                $"{argPre}something (Boolean): This parameter is Required.",
+                "Description: This parameter does something."
+            };
+            Processor.ProcessArguments(new[] { "execute", "without-alias", helpString });
+            var temp = mockConsole.ToString();
+            var expectedString = ConvertConsoleLinesToString(consoleLines, true);
+            Assert.AreEqual(expectedString, temp);
+        }
+
+        [Test]
         public void AbleToRetriveCommandDocumentationWithAliasAndDescription()
         {
             mockConsole.Clear();

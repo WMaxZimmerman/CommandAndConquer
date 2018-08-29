@@ -13,5 +13,10 @@ namespace CommandAndConquer.CLI.Attributes
             Alias = alias;
             Description = description;
         }
+
+        public CliParameter(string description = null)
+        {
+            Description = description;
+        }
     }
 }
