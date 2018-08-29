@@ -9,6 +9,11 @@ namespace CommandAndConquer.CLI.Core
 {
     public static class Processor
     {
+        /// <summary>
+        /// Gets all controllers for the specified assembly.
+        /// </summary>
+        /// <param name="callingAssembly">Assembly to get controllers from.</param>
+        /// <returns>A list of controllers.</returns>
         public static IEnumerable<ControllerVm> GetAllControllers(Assembly callingAssembly)
         {
             var controllerList = callingAssembly.GetTypes()
@@ -18,6 +23,10 @@ namespace CommandAndConquer.CLI.Core
             return controllerList;
         }
 
+        /// <summary>
+        /// Processes and executes arguments.
+        /// </summary>
+        /// <param name="args">List of arguments.</param>
         public static void ProcessArguments(string[] args)
         {
             if (args.Length == 0)

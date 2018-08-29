@@ -8,18 +8,39 @@ using CommandAndConquer.CLI.Core;
 
 namespace CommandAndConquer.CLI.Models
 {
+    /// <summary>
+    /// Represents a command method.
+    /// </summary>
     public class CommandMethod
     {
+        /// <summary>
+        /// Command name.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Command information.
+        /// </summary>
         public MethodInfo Info { get; set; }
+        /// <summary>
+        /// Command parameters.
+        /// </summary>
         public MethodParameters Parameters { get; set; }
 
+        /// <summary>
+        /// Initializes an instance of a command method.
+        /// </summary>
+        /// <param name="info">Command information.</param>
         public CommandMethod(MethodInfo info)
         {
             Info = info;
             Name = GetCommandName();
         }
 
+        /// <summary>
+        /// Invokes a command.
+        /// </summary>
+        /// <param name="args">Arguments.</param>
+        /// <returns><c>true</c> if it the invocation succeeds, <c>false</c> otherwise.</returns>
         public bool Invoke(List<CommandLineArgument> args)
         {
             try
@@ -58,6 +79,10 @@ namespace CommandAndConquer.CLI.Models
             }
         }
 
+        /// <summary>
+        /// Sets method arguments.
+        /// </summary>
+        /// <param name="args">List of arguments.</param>
         public void SetParameters(List<CommandLineArgument> args)
         {
             var methodParams = new MethodParameters();
@@ -149,6 +174,9 @@ namespace CommandAndConquer.CLI.Models
             Parameters = methodParams;
         }
 
+        /// <summary>
+        /// Outputs command documentation.
+        /// </summary>
         public void OutputDocumentation()
         {
             var attrs = Attribute.GetCustomAttributes(Info);

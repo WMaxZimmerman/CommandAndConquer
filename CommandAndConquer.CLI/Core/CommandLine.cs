@@ -4,6 +4,11 @@ namespace CommandAndConquer.CLI.Core
 {
     public static class CommandLine
     {
+        /// <summary>
+        /// Splits a string in several arguments.
+        /// </summary>
+        /// <param name="argString">String to split.</param>
+        /// <returns>List of arguments.</returns>
         public static string[] GetCommandLineArgs(string argString)
         {
             argString = argString.Trim();
