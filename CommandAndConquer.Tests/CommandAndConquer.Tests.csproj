@@ -52,6 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLI\DefaultCommandTest.cs" />
     <Compile Include="CLI\PositiveExecutionTests.cs" />
     <Compile Include="CLI\DocumentationTests.cs" />
     <Compile Include="CLI\BaseCliTest.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="CLI\ApplicationLoopTests.cs" />
     <Compile Include="CLI\AsyncTests.cs" />
     <Compile Include="CommandLineTests\GetCommandLineArgsTests.cs" />
+    <Compile Include="Controllers\DefaultCommandController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Controllers\ExecutionController.cs" />
     <Compile Include="HelpersTests\ProcessorTests.cs" />

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Attributes\CliCommand.cs" />
     <Compile Include="Attributes\CliController.cs" />
+    <Compile Include="Attributes\CliDefaultCommand.cs" />
     <Compile Include="Attributes\CliParameter.cs" />
     <Compile Include="Core\CommandLine.cs" />
     <Compile Include="Core\Processor.cs" />
