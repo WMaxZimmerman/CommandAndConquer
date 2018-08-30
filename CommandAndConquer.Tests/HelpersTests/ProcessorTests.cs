@@ -17,6 +17,7 @@ namespace CommandAndConquer.Tests.HelpersTests
             var actualControllers = Processor.GetAllControllers(Assembly.GetExecutingAssembly()).ToList();
             var expectedControllers = new List<ControllerVm>
             {
+                new ControllerVm(typeof(DefaultCommandController)),
                 new ControllerVm(typeof(DocumentationController)),
                 new ControllerVm(typeof(ExecutionController))
             };

@@ -109,7 +109,7 @@ namespace CommandAndConquer.CLI.Core
         }
 
         private static ProcessedArguments ProcessArgs(IReadOnlyList<string> args)
-        {;
+        {
             var processedArguments = new ProcessedArguments();
             var argsStart = 2;
 
@@ -119,7 +119,7 @@ namespace CommandAndConquer.CLI.Core
             processedArguments.Controller = TryGetArg(args, 0);
             processedArguments.Command = TryGetArg(args, 1);
 
-            if(processedArguments.Command.StartsWith(Settings.ArgumentPrefix))
+            if(processedArguments.Command?.StartsWith(Settings.ArgumentPrefix) == true)
             {
                 argsStart = 1;
                 processedArguments.Command = null;

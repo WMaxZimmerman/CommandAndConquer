@@ -13,6 +13,7 @@ namespace CommandAndConquer.Tests.CLI
             mockConsole.Clear();
             var consoleLines = new List<string>
             {
+                "default - This is a test description.",
                 "document - This is a test description.",
                 "execute - This is a test description."
             };
@@ -159,7 +160,7 @@ namespace CommandAndConquer.Tests.CLI
                 "Description: This is an example description.",
                 "Parameters:",
                 $"{argPre}something (Boolean): This parameter is Required.",
-                "Description: This parameter does something."
+                "Description: without-alias"
             };
             Processor.ProcessArguments(new[] { "execute", "without-alias", helpString });
             var temp = mockConsole.ToString();

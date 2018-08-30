@@ -46,7 +46,7 @@ namespace CommandAndConquer.CLI.Models
                                       .Where(m => Attribute.GetCustomAttributes(m).Any(a => a is CliDefaultCommand))
                                       .Select(c => new CommandMethod(c)).FirstOrDefault();
 
-            Methods.Add(DefaultMethod);
+            if (DefaultMethod != null) Methods.Add(DefaultMethod);
         }
 
         /// <summary>
