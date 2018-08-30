@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.CLI", "CommandAndConquer.CLI\CommandAndConquer.CLI.csproj", "{5D0C7473-D01F-4824-A75B-49C7FE90F4F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandAndConquer.CLI", "CommandAndConquer.CLI\CommandAndConquer.CLI.csproj", "{5D0C7473-D01F-4824-A75B-49C7FE90F4F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.Tests", "CommandAndConquer.Tests\CommandAndConquer.Tests.csproj", "{9BE46BDA-B098-4AF1-8549-E4152F36564C}"
 EndProject
@@ -14,6 +14,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.CLI.VSIX", "CommandAndConquer.CLI.VSIX\CommandAndConquer.CLI.VSIX.csproj", "{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.TestCLI", "CommandAndConquer.TestCLI\CommandAndConquer.TestCLI.csproj", "{865A53AF-93C1-42A8-82EB-CAF665C73A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.Standard", "CommandAndConquer.Standard\CommandAndConquer.Standard.csproj", "{6F771B92-A02B-496B-A0DC-C173A96712F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Standard", "Standard", "{76B97C16-22AD-4A7D-9EB5-3AAFCD1EC46A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.Framework.TestCLI", "CommandAndConquer.Framework.TestCLI\CommandAndConquer.Framework.TestCLI.csproj", "{51282D6C-0AC4-465D-A026-8F0A374B381B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandAndConquer.Core.TestCLI", "CommandAndConquer.Core.TestCLI\CommandAndConquer.Core.TestCLI.csproj", "{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +49,18 @@ Global
 		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865A53AF-93C1-42A8-82EB-CAF665C73A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F771B92-A02B-496B-A0DC-C173A96712F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F771B92-A02B-496B-A0DC-C173A96712F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F771B92-A02B-496B-A0DC-C173A96712F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F771B92-A02B-496B-A0DC-C173A96712F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51282D6C-0AC4-465D-A026-8F0A374B381B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51282D6C-0AC4-465D-A026-8F0A374B381B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51282D6C-0AC4-465D-A026-8F0A374B381B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51282D6C-0AC4-465D-A026-8F0A374B381B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +68,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B05677F9-0691-41CC-BA95-4DED2078B4D7} = {4E50E530-8317-41F4-B709-578B25F28316}
 		{BC3AEEC8-5F4D-48E2-83F5-E48F6E57D26D} = {4E50E530-8317-41F4-B709-578B25F28316}
+		{6F771B92-A02B-496B-A0DC-C173A96712F5} = {76B97C16-22AD-4A7D-9EB5-3AAFCD1EC46A}
+		{51282D6C-0AC4-465D-A026-8F0A374B381B} = {76B97C16-22AD-4A7D-9EB5-3AAFCD1EC46A}
+		{CEA6CFD1-B57D-401C-ACFE-556CE69B8CC4} = {76B97C16-22AD-4A7D-9EB5-3AAFCD1EC46A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56B315A8-299A-4713-A074-90C933D0AD72}
