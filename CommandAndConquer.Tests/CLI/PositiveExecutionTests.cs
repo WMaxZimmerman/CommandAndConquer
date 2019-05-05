@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using CommandAndConquer.CLI.Core;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class PositiveExecutionTests: BaseCliTest
     {
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithoutOptionalParameter()
         {
             mockConsole.Clear();
@@ -15,10 +14,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] {"document", "example", $"{argPre}required", "bleh"});
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithOptionalParameter()
         {
             mockConsole.Clear();
@@ -26,10 +25,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "document", "example", $"{argPre}required", "bleh", $"{argPre}opt", "5" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithEnumParameter()
         {
             mockConsole.Clear();
@@ -37,10 +36,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithArrayParameter()
         {
             mockConsole.Clear();
@@ -54,10 +53,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "array", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithParameterAlias()
         {
             mockConsole.Clear();
@@ -71,10 +70,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}s", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithListParameter()
         {
             mockConsole.Clear();
@@ -88,10 +87,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "list", $"{argPre}values", "EnumTwo", "EnumOne", "EnumThree", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithIEnumerableParameter()
         {
             mockConsole.Clear();
@@ -105,10 +104,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", "thingOne", "thingThree", "thingTwo", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithArrayParameterWithNoValues()
         {
             mockConsole.Clear();
@@ -119,10 +118,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "array", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithListParameterWithNoValues()
         {
             mockConsole.Clear();
@@ -133,10 +132,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "list", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithEnumerableParameterWithNoValues()
         {
             mockConsole.Clear();
@@ -147,10 +146,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "enumerable", $"{argPre}values", $"{argPre}something", "3" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithBooleanParameterWithNoValues()
         {
             mockConsole.Clear();
@@ -161,10 +160,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "bool", $"{argPre}withOutput" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallNonStaticComamndWithEnum()
         {
             mockConsole.Clear();
@@ -175,7 +174,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "nonstatic", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
     }
 }

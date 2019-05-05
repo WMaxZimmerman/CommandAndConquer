@@ -1,8 +1,7 @@
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class ApplicationLoopTests: BaseCliTest
     {
     }

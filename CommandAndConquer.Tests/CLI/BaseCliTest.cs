@@ -4,11 +4,10 @@ using System.Configuration;
 using System.IO;
 using System.Text;
 using CommandAndConquer.CLI.Core;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class BaseCliTest
     {
         protected StringWriter consoleMock;
@@ -16,8 +15,7 @@ namespace CommandAndConquer.Tests.CLI
         protected string helpString = Settings.HelpString;
         protected string argPre = Settings.ArgumentPrefix;
 
-        [SetUp]
-        public void Init()
+        public BaseCliTest()
         {
             consoleMock = new StringWriter(mockConsole);
             Console.SetOut(consoleMock);

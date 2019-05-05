@@ -1,19 +1,18 @@
+using System;
 using CommandAndConquer.CLI.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestClass]
     public class AsyncTests : BaseCliTest
     {
-        [Test]
+        [Fact]
         public void ApplicationWaitsForAnyWaitedTasksBeforExiting()
         {
             mockConsole.Clear();
             Processor.ProcessArguments(new[] { "execute", "longRunning", $"{argPre}firstNum", "5", $"{argPre}secondNum", "9" });
             var temp = mockConsole.ToString();
-            NUnit.Framework.Assert.Greater(temp.Length, 0);
+            Assert.True(temp.Length > 0);
         }
     }
 }

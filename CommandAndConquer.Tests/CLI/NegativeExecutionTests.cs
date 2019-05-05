@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using CommandAndConquer.CLI.Core;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class NegativeExecutionTests: BaseCliTest
     {
-        [Test]
+        [Fact]
         public void AbleToHandleMissingAllAguments()
         {
             SetApplicationLoopEnabled(false);
@@ -20,10 +19,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new string[] { });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToHandleMissingAllAgumentsAfterController()
         {
             mockConsole.Clear();
@@ -34,10 +33,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToHandleMissingParameters()
         {
             mockConsole.Clear();
@@ -48,10 +47,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToHandleInvalidParameters()
         {
             mockConsole.Clear();
@@ -62,10 +61,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "EnumOne", $"{argPre}invalidParam", "bad" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToHandleInvalidParameterValue()
         {
             mockConsole.Clear();
@@ -78,10 +77,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", $"{argPre}sample", "Enum" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToHandleCallToCommandThatThrowsException()
         {
             mockConsole.Clear();
@@ -94,7 +93,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "exception", $"{argPre}sample", "EnumOne" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
     }
 }

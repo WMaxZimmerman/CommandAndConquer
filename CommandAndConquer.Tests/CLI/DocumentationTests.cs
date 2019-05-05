@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using CommandAndConquer.CLI.Core;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class DocumentationTests: BaseCliTest
     {
-        [Test]
+        [Fact]
         public void AbleToRetriveProgramDocumentation()
         {
             mockConsole.Clear();
@@ -20,10 +19,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, false);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveControllerDocumentation()
         {
             SetParamDetail("simple");
@@ -39,10 +38,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "document", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentation()
         {
             SetParamDetail("simple");
@@ -58,10 +57,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "document", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        //[Test]
+        //[Fact]
         //public void AbleToRetriveCommandDocumentationWithDetailedParams()
         //{
         //    SetParamDetail("detailed");
@@ -77,10 +76,10 @@ namespace CommandAndConquer.Tests.CLI
         //    Processor.ProcessArguments(new[] { "document", "example", helpString });
         //    var temp = mockConsole.ToString();
         //    var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-        //    Assert.AreEqual(expectedString, temp);
+        //    Assert.Equal(expectedString, temp);
         //}
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationWithEnum()
         {
             mockConsole.Clear();
@@ -94,10 +93,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "example", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationFromNonStaticMethodWithEnum()
         {
             mockConsole.Clear();
@@ -111,10 +110,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "nonstatic", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationWithListOfEnum()
         {
             mockConsole.Clear();
@@ -129,10 +128,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "list", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationWithAlias()
         {
             mockConsole.Clear();
@@ -147,10 +146,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "enumerable", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationWithoutAlias()
         {
             mockConsole.Clear();
@@ -165,10 +164,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "without-alias", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToRetriveCommandDocumentationWithAliasAndDescription()
         {
             mockConsole.Clear();
@@ -184,7 +183,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "execute", "array", helpString });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines, true);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
     }
 }

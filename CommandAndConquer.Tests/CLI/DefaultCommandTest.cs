@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using CommandAndConquer.CLI.Core;
-using NUnit.Framework;
+using Xunit;
 
 namespace CommandAndConquer.Tests.CLI
 {
-    [TestFixture]
     public class DefaultCommandTest: BaseCliTest
     {
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithName()
         {
             mockConsole.Clear();
@@ -18,10 +17,10 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "default", "bool", $"{argPre}withOutput" });
             var temp = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
 
-        [Test]
+        [Fact]
         public void AbleToCallCommandWithoutName()
         {
             mockConsole.Clear();
@@ -32,7 +31,7 @@ namespace CommandAndConquer.Tests.CLI
             Processor.ProcessArguments(new[] { "default", $"{argPre}withOutput" });
             var temp           = mockConsole.ToString();
             var expectedString = ConvertConsoleLinesToString(consoleLines);
-            Assert.AreEqual(expectedString, temp);
+            Assert.Equal(expectedString, temp);
         }
     }
 }

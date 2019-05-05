@@ -1,23 +1,20 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
+using Xunit;
 
 namespace CommandAndConquer.Tests.Integration
 {
-    [TestFixture]
     public class ExecutionTests
     {
         private string _directory;
 
-        [SetUp]
-        public void Init()
+        public ExecutionTests()
         {
             _directory = Directory.GetParent((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath).Parent.Parent.Parent.FullName + @"\CommandAndConquer.TestCLI\bin\Debug\";
         }
 
-        [Test]
+        [Fact]
         public void ApplicationTerminatesWithFailedStatusWhenInvalidController()
         {
             string strCmdText;
@@ -25,10 +22,10 @@ namespace CommandAndConquer.Tests.Integration
             var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
-            Assert.AreEqual(1, proc.ExitCode);
+            Assert.Equal(1, proc.ExitCode);
         }
 
-        [Test]
+        [Fact]
         public void ApplicationTerminatesWithFailedStatusWhenMissingCommand()
         {
             string strCmdText;
@@ -36,10 +33,10 @@ namespace CommandAndConquer.Tests.Integration
             var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
-            Assert.AreEqual(1, proc.ExitCode);
+            Assert.Equal(1, proc.ExitCode);
         }
 
-        [Test]
+        [Fact]
         public void ApplicationTerminatesWithFailedStatusWhenInvalidParameters()
         {
             string strCmdText;
@@ -47,10 +44,10 @@ namespace CommandAndConquer.Tests.Integration
             var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
-            Assert.AreEqual(1, proc.ExitCode);
+            Assert.Equal(1, proc.ExitCode);
         }
 
-        [Test]
+        [Fact]
         public void ApplicationTerminatesWithFailedStatusWhenMissingParameters()
         {
             string strCmdText;
@@ -58,7 +55,7 @@ namespace CommandAndConquer.Tests.Integration
             var proc = Process.Start("CMD.exe", strCmdText);
             proc.WaitForExit();
 
-            Assert.AreEqual(1, proc.ExitCode);
+            Assert.Equal(1, proc.ExitCode);
         }
     }
 }
