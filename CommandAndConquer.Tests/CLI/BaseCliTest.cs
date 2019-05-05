@@ -41,13 +41,22 @@ namespace CommandAndConquer.Tests.CLI
             UpdateConfigValue("paramDetail", detail);
         }
 
-        private static void UpdateConfigValue(string key, string value)
+        private void UpdateConfigValue(string key, string value)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+	    var settings = config.AppSettings.Settings;
 
-            config.AppSettings.Settings[key].Value = value;
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appsettings");
+	    if (settings[key] != null)
+	    {
+		settings[key].Value = value;
+	    }
+	    else
+	    {
+		settings.Add(key, value);
+	    }
+
+	    config.Save(ConfigurationSaveMode.Modified);
+	    ConfigurationManager.RefreshSection("appsettings");
         }
     }
 }
