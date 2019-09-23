@@ -3,6 +3,8 @@ This library is designed to make the process of creating and managing Console Ap
 
 To start using CommandAndConquer there are two routes (three if you include pulling down this source code) that you can take.
 
+This library targets .net framework and is not currently being worked on. The [dotnet core version](https://github.com/WMaxZimmerman/NTrospection/tree/master/src/NTrospection.CLI) is currently my main focus as that is where most of my development has been.
+
 # Using The Template
 The easiest way to start using CommandAndConquer is to install [this template](https://marketplace.visualstudio.com/items?itemName=wmaxzimmerman.CommandAndConquerCLI01). After you have installed the template you can use it to create a new project. That project will have all of the needed boiler plate to be able to start creating a CommandAndConquer application. If you go this route you will probably notice how light the template really is.  The 'Program.cs' file only has only line of added code (Not including usings) and there is only one additional class. That class can be found in the 'Controllers' folder and will be name 'ExampleController.cs'. This class is designed to be an example of how you can setup controllers and commands for the CommandAndConquer framework. If you need more information than the examples provided in the code you can read on here.
 
