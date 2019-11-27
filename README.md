@@ -1,4 +1,5 @@
-# This is not replaced by https://github.com/WMaxZimmerman/NTrospection/tree/master/src/NTrospection.CLI
+# This is now replaced by
+https://github.com/WMaxZimmerman/NTrospection/tree/master/src/NTrospection.CLI
 
 # CommandAndConquer
 This library is designed to make the process of creating and managing Console Applications as easy as possible. CommandAndConquer will handle processing all command line arguments, wiring up and execution of methods, and user documentation. If you are tired of having to manage every possible command line argument on how to map those to methods, then this is a library you should absolutely starting using.
